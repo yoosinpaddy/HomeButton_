@@ -37,6 +37,7 @@ import com.home.back.bottom.broadcast.reciever.LockScreenAdmin;
 
 import com.home.back.bottom.activity.EnableAccessibilityActivity;
 import com.home.back.bottom.activity.EnableAdminActivity;
+import com.home.back.bottom.dialog.ActionDialogFragment;
 import com.home.back.bottom.dialog.SingleChoiceDialogFragment;
 import com.home.back.bottom.dialog.SliderDialogFragment;
 import com.home.back.bottom.service.AccessibilityActionService;
@@ -455,9 +456,13 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         for (Action nameResId : actions) {
             arrayList.add(getString(nameResId.getNameResId()));
         }
-        actionsDialogFragment = SingleChoiceDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel), arrayList);
+        /*actionsDialogFragment = SingleChoiceDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel), arrayList);
         actionsDialogFragment.setTargetFragment(this, i);
-        actionsDialogFragment.show(getFragmentManager(), SingleChoiceDialogFragment.TAG);
+        actionsDialogFragment.show(getFragmentManager(), SingleChoiceDialogFragment.TAG);*/
+
+        ActionDialogFragment ad = ActionDialogFragment.createInstance();
+        ad.show(getChildFragmentManager(), "tag");
+
     }
 
     private void startSliderDialog(int i, int i2, String str, String str2) {
