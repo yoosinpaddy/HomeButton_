@@ -105,7 +105,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private CheckBox notificationEnableCheckBox;
     private RelativeLayout notificationLayout;
     private PositionEnum positionEnum = PositionEnum.CENTER;
-    private FrameLayout proLockedLayout;
+    private RelativeLayout proLockedLayout;
     private boolean proVersionUnlock;
     private RelativeLayout rightMarginLayout;
     private TextView rightMarginSubtitleTextView;
@@ -262,7 +262,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         rotationLayout = (RelativeLayout) view.findViewById(R.id.rotation_layout);
         keyboardLayout = (RelativeLayout) view.findViewById(R.id.keyboard_layout);
         notificationLayout = (RelativeLayout) view.findViewById(R.id.notification_layout);
-        proLockedLayout = (FrameLayout) view.findViewById(R.id.pro_locked_layout);
+        proLockedLayout = (RelativeLayout) view.findViewById(R.id.pro_locked_layout);
         vibrationStrengthLayout = (RelativeLayout) view.findViewById(R.id.vibration_strength_layout);
         clickLayout.setOnClickListener(this);
         doubleClickLayout.setOnClickListener(this);
