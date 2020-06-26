@@ -2,6 +2,7 @@ package com.home.back.bottom.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class PreferencesUtils {
     public static final String PREF_ACTION_ON_CLICK = "actionOnClick";
@@ -35,6 +36,7 @@ public class PreferencesUtils {
     public static final String PREF_VIBRATION_STRENGTH = "PREF_VIBRATION_STRENGTH";
     public static final String PREF_X_HOME_BAR_SHOWN = "PREF_X_HOME_BAR_SHOWN";
     private static SharedPreferences sharedPreferences;
+    private static final String TAG = "PreferencesUtils";
 
     public static void initPreferences(Context context) {
         sharedPreferences = context.getSharedPreferences("com.home.button.bottom", 0);
@@ -49,6 +51,7 @@ public class PreferencesUtils {
     }
 
     public static void savePref(String str, boolean z) {
+        Log.e(TAG, "savePref: "+str );
         sharedPreferences.edit().putBoolean(str, z).apply();
     }
 

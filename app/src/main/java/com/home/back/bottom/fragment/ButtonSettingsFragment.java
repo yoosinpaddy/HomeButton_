@@ -33,6 +33,7 @@ import androidx.fragment.app.Fragment;
 import com.home.back.bottom.R;
 import com.home.back.bottom.activity.ActionListActivity;
 import com.home.back.bottom.activity.BillingActivity;
+import com.home.back.bottom.activity.MainActivity;
 import com.home.back.bottom.broadcast.reciever.LockScreenAdmin;
 
 import com.home.back.bottom.activity.EnableAccessibilityActivity;
@@ -40,6 +41,7 @@ import com.home.back.bottom.activity.EnableAdminActivity;
 import com.home.back.bottom.dialog.ActionDialogFragment;
 import com.home.back.bottom.dialog.SingleChoiceDialogFragment;
 import com.home.back.bottom.dialog.SliderDialogFragment;
+import com.home.back.bottom.interfaces.ActivateButton;
 import com.home.back.bottom.service.AccessibilityActionService;
 import com.home.back.bottom.util.Action;
 import com.home.back.bottom.util.ButtonPosition;
@@ -52,7 +54,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ButtonSettingsFragment extends Fragment implements OnClickListener, SingleChoiceDialogFragment.SingleChoiceListener, OnCheckedChangeListener {
+public class ButtonSettingsFragment extends Fragment implements OnClickListener, SingleChoiceDialogFragment.SingleChoiceListener, OnCheckedChangeListener, ActivateButton {
     private static final String ARG_POSITION = "ARG_POSITION";
     private static final int BASE_VIBRATION_STRENGTH = 50;
     private static final int BUTTON_HEIGHT_REQUEST = 200;
@@ -104,7 +106,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private CheckBox notificationEnableCheckBox;
     private RelativeLayout notificationLayout;
     private PositionEnum positionEnum = PositionEnum.CENTER;
-    private FrameLayout proLockedLayout;
+    private RelativeLayout proLockedLayout;
     private boolean proVersionUnlock;
     private RelativeLayout rightMarginLayout;
     private TextView rightMarginSubtitleTextView;
@@ -121,6 +123,14 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private RelativeLayout vibrationLayout;
     private RelativeLayout vibrationStrengthLayout;
     private TextView vibrationStrengthTextView;
+    private MainActivity mainActivity;
+
+    @Override
+    public void buttonClicked(boolean z) {
+        Log.e(TAG, "buttonClicked: Inteface" );
+        activationSwitch.setChecked(z);
+//        onCheckedChanged(activationSwitch,z);
+    }
 
     public enum ButtonColor {
         RED,
@@ -204,6 +214,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     break;
             }
         }
+        mainActivity=(MainActivity)getActivity();
         actions = new ArrayList(Arrays.asList(Action.values()));
         if (VERSION.SDK_INT < 21) {
             actions.remove(Action.SCREENSHOT);
@@ -216,6 +227,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         if (VERSION.SDK_INT < 24) {
             actions.remove(Action.SPLIT_SCREEN);
         }
+//        if (mainActivity!-null && mainActivity instanceof )
     }
 
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -251,7 +263,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         rotationLayout = (RelativeLayout) view.findViewById(R.id.rotation_layout);
         keyboardLayout = (RelativeLayout) view.findViewById(R.id.keyboard_layout);
         notificationLayout = (RelativeLayout) view.findViewById(R.id.notification_layout);
-        proLockedLayout = (FrameLayout) view.findViewById(R.id.pro_locked_layout);
+        proLockedLayout = (RelativeLayout) view.findViewById(R.id.pro_locked_layout);
         vibrationStrengthLayout = (RelativeLayout) view.findViewById(R.id.vibration_strength_layout);
         clickLayout.setOnClickListener(this);
         doubleClickLayout.setOnClickListener(this);
@@ -589,6 +601,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
             PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_NOTIFICATION_ENABLE), notificationEnableCheckBox.isChecked());
             buttonSettingsListener.onRestartServiceNeeded();
         } else if (compoundButton == activationSwitch) {
+            Log.e(TAG, "onCheckedChanged: "+z );
             PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_SERVICE_ACTIVE), activationSwitch.isChecked());
             setupTexts();
             buttonSettingsListener.onRestartServiceNeeded();

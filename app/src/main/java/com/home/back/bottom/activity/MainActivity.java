@@ -46,6 +46,7 @@ import com.home.back.bottom.dialog.SimpleDialogFragment;
 import com.home.back.bottom.dialog.XHomeBarDialog;
 import com.home.back.bottom.fragment.ButtonSettingsFragment;
 import com.home.back.bottom.fragment.DrawerFragment;
+import com.home.back.bottom.interfaces.ActivateButton;
 import com.home.back.bottom.service.ButtonOverlayService;
 import com.home.back.bottom.util.Action;
 import com.home.back.bottom.util.PreferencesUtils;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
 
     public List<ApplicationInfo> appLaunchable;
 
+    ButtonSettingsFragment.PositionEnum positionEnum = ButtonSettingsFragment.PositionEnum.CENTER;
     public LinearLayout bottomBar;
 
     public ButtonSettingsFragment centerFragment;
@@ -274,10 +276,26 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
     private void initViews() {
         /*Mine code*/
         switchOnOff = findViewById(R.id.switchOnOff);
+        boolean pref2 = PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_SERVICE_ACTIVE), false);
+        switchOnOff.setChecked(pref2);
         switchOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //TODO: Interface here
+                int i=mViewPager.getCurrentItem();
+                if (i == 0) {
+                    if (leftFragment!=null&&leftFragment instanceof ActivateButton){
+                        ((ActivateButton)leftFragment).buttonClicked(isChecked);
+                    }
+                } else if (i == 1) {
+                    if (centerFragment!=null&&centerFragment instanceof ActivateButton){
+                        ((ActivateButton)centerFragment).buttonClicked(isChecked);
+                    }
+                } else {
+                    if (rightFragment!=null&&rightFragment instanceof ActivateButton){
+                        ((ActivateButton)rightFragment).buttonClicked(isChecked);
+                    }
+                }
             }
         });
 
@@ -343,21 +361,31 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
 
             public void onPageSelected(int i) {
 //                bottomBar.selectTabAtPosition(i);
+                boolean pref2=false;
                 switch (i) {
                     case 0:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left_select));
                         center.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.center));
                         right.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.right_new));
+                        positionEnum=ButtonSettingsFragment.PositionEnum.LEFT;
+                        pref2 = PreferencesUtils.getPref("left_serviceActive", false);
+                        switchOnOff.setChecked(pref2);
                         break;
                     case 1:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left));
                         center.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.center_select));
                         right.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.right_new));
+                        positionEnum=ButtonSettingsFragment.PositionEnum.CENTER;
+                        pref2 = PreferencesUtils.getPref("serviceActive", false);
+                        switchOnOff.setChecked(pref2);
                         break;
                     case 2:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left));
                         center.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.center));
                         right.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.right_select));
+                        positionEnum=ButtonSettingsFragment.PositionEnum.RIGHT;
+                        pref2 = PreferencesUtils.getPref("right_serviceActive", false);
+                        switchOnOff.setChecked(pref2);
                         break;
                 }
             }
@@ -367,6 +395,13 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
         progressDialog.setCancelable(false);
         tutoLayout = (RelativeLayout) findViewById(R.id.layout_tuto);
         tutoLayout.setOnClickListener(this);
+    }
+
+    public String getPrefKey(String str) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ButtonSettingsFragment.PositionEnum.getPrefPrefix(positionEnum));
+        sb.append(str);
+        return sb.toString();
     }
 
     private void initDrawer() {
