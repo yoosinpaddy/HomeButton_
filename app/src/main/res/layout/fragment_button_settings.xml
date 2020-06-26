@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -42,17 +41,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
             android:layout_marginTop="10dp"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:animateLayoutChanges="true"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginBottom="10dp"
+                android:animateLayoutChanges="true"
                 app:cardCornerRadius="@dimen/_5sdp"
                 app:cardElevation="4dp">
 
@@ -329,9 +328,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginBottom="10dp"
                 app:cardCornerRadius="@dimen/_5sdp"
                 app:cardElevation="4dp">
 
@@ -357,8 +356,8 @@
                             style="@style/settings_icon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:rotation="180"
                             android:layout_gravity="center_vertical"
+                            android:rotation="180"
                             app:srcCompat="@drawable/invisible" />
 
                         <androidx.appcompat.widget.AppCompatCheckBox
@@ -397,8 +396,8 @@
                             style="@style/settings_icon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:rotation="180"
                             android:layout_gravity="center_vertical"
+                            android:rotation="180"
                             app:srcCompat="@drawable/color" />
 
                         <ImageView
@@ -437,8 +436,8 @@
                             style="@style/settings_icon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:rotation="180"
                             android:layout_gravity="center_vertical"
+                            android:rotation="180"
                             app:srcCompat="@drawable/right_new" />
 
                         <TextView
@@ -583,9 +582,9 @@
                 android:id="@+id/behavior_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginBottom="10dp"
                 app:cardCornerRadius="@dimen/_5sdp"
                 app:cardElevation="4dp">
 
@@ -756,9 +755,9 @@
                 android:id="@+id/notification_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginBottom="10dp"
                 app:cardCornerRadius="@dimen/_5sdp"
                 app:cardElevation="4dp">
 
@@ -831,8 +830,8 @@
         android:id="@+id/pro_locked_layout"
         layout="@layout/layout_pro_locked"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:visibility="visible" />
 </RelativeLayout>

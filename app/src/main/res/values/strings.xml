@@ -141,7 +141,7 @@
     <string name="touch_area_width">Button width</string>
     <string name="touch_area_width_select">Set the button\'s width</string>
     <string name="tuto">Touch the area at the bottom edge of the screen to launch an action</string>
-    <string name="unlock_pro">Unlock pro version</string>
+    <string name="unlock_pro">Buy pro version</string>
     <string name="v7_preference_off">OFF</string>
     <string name="v7_preference_on">ON</string>
     <string name="vibration">Vibration</string>
@@ -156,4 +156,5 @@
     <string name="native_ad_unit_id2">ca-app-pub-3940256099942544/2247696110</string>
     <string name="native_ad_unit_id">ca-app-pub-3940256099942544/2247696110</string>
     <string name="google_inter">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="pro_version_unlocks">-Right Button\n-Left Button\n-Lock Screen Action\n-Quick Settings Action\n-Power Menu Action\n-ScreenShot Action\n(only for android 5.0)</string>
 </resources>
