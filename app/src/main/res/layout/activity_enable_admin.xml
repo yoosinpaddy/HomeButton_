@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="16dp"
+            android:tint="@color/accent"
+            app:srcCompat="@drawable/ic_security_black_24dp" />
+
+        <TextView
+            android:id="@+id/admin_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="@string/lock_screen_admin_instructions"
+            android:textColor="@color/grey_800"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/admin_button"
+            style="@style/button_accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/lock_screen_admin_button" />
+    </LinearLayout>
+</ScrollView>

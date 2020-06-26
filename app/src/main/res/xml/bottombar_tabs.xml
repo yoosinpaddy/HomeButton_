@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+    <tab barColorWhenSelected="@color/blue_grey_500" icon="@drawable/bottom_navigation_left" id="@+id/tab_left" title="@string/home_left"/>
+    <tab icon="@drawable/bottom_navigation_center" id="@+id/tab_center" title="@string/home_center"/>
+    <tab barColorWhenSelected="@color/blue_grey_500" icon="@drawable/bottom_navigation_right" id="@+id/tab_right" title="@string/home_right"/>
+</tabs>

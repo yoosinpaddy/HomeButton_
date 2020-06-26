@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:fillViewport="true">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.15"
+            android:background="@drawable/ic_launcher_repeat" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:animateLayoutChanges="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/buy_pro_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/buy_pro_for"
+                    android:textColor="@color/accent_dark"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/pro_content_textview"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="left|center_vertical|center_horizontal|center"
+                    android:text="@string/pro_version_content"
+                    android:textColor="@color/grey_600"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/buy_pro_button"
+                    style="@style/button_accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:text="@string/buy_pro" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp" />
+
+                <TextView
+                    android:id="@+id/pro_paid_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/pro_already_unlocked"
+                    android:textColor="@color/grey_600"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/error_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/billing_error"
+                    android:textColor="@color/grey_600"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/retry_button"
+                    style="@style/button_accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:text="@string/billing_retry" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</ScrollView>

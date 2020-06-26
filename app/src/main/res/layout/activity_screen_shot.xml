@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_screen_shot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/screenshot_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp">
+
+            <Button
+                android:id="@+id/take_screenshot_button"
+                style="@style/button_accent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/take_screenshot" />
+
+            <TextView
+                android:id="@+id/cancel_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/cancel"
+                android:textColor="@color/grey_600"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

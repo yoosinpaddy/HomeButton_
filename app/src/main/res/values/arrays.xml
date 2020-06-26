@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="color_array">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Purple</item>
+        <item>White</item>
+        <item>Black</item>
+    </array>
+    <array name="picker_colors">
+        <item>@color/red_A700</item>
+        <item>@color/light_blue_A700</item>
+        <item>@color/green_A700</item>
+        <item>@color/purple_500</item>
+        <item>@color/white</item>
+        <item>@color/grey_700</item>
+    </array>
+</resources>
