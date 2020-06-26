@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="None"
+        android:inputType="textCapWords"
+        android:textAllCaps="false"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

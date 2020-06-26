@@ -44,6 +44,7 @@
 
 
             <TextView
+                android:id="@+id/btnOk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -68,18 +69,22 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/toolbarAction" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewActions"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingStart="18dp"
-        android:paddingLeft="18dp"
-        android:paddingEnd="18dp"
-        android:paddingRight="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSelectActionTitle"
-        tools:itemCount="18"
-        tools:listitem="@layout/item_action" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvSelectActionTitle">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="18dp"
+            android:paddingLeft="18dp"
+            android:paddingEnd="18dp"
+            android:paddingRight="18dp"
+            tools:itemCount="18"
+            tools:listitem="@layout/item_action" />
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

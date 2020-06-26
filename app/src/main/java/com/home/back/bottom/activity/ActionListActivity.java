@@ -81,6 +81,11 @@ public class ActionListActivity extends AppCompatActivity {
                 choice=position;
                 rd_button.setChecked(true);
             }
+
+            @Override
+            public void onItemClickLister(View v, int position) {
+
+            }
         });
     }
 }

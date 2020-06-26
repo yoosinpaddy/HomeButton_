@@ -1,6 +1,7 @@
 package com.home.back.bottom.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import com.home.back.bottom.R;
 import com.home.back.bottom.util.Action;
 import com.home.back.bottom.util.Inter_OnItemClickListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +24,17 @@ public class MyActionListAdapter extends RecyclerView.Adapter<MyActionListAdapte
     Inter_OnItemClickListener onItemClickListener;
     private List<Action> list = new ArrayList<>();
     private Context context;
+    ArrayList<View> images=new ArrayList<>();
+    int selected=-1;
+    private static final String TAG = "MyActionListAdapter";
 
 
-    public MyActionListAdapter(Context context, List<Action> list) {
+    public MyActionListAdapter(Context context, List<Action> listx) {
         this.context = context;
-        this.list = list;
+        this.list = listx;
     }
 
+    @NotNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -40,6 +47,23 @@ public class MyActionListAdapter extends RecyclerView.Adapter<MyActionListAdapte
         Action c = list.get(position);
         holder.txt_tvbranname.setText(c.name());
         holder.imgChecked.setVisibility(View.GONE);
+        images.add(holder.imgChecked);
+        Log.e(TAG, "onBindViewHolder: "+c.name() );
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selected!=-1){
+                    for (View x:images
+                         ) {
+                        if (x != null){
+                            x.setVisibility(View.GONE);
+                        }
+                    }
+                }
+                v.setVisibility(View.VISIBLE);
+                selected=position;
+            }
+        });
 
     }
 

@@ -23,10 +23,19 @@ public enum Action {
 
     private int f53id;
     private int nameResId;
+    private  boolean isChecked;
 
     private Action(int i, int i2) {
         this.f53id = i;
         this.nameResId = i2;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public int getId() {

@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
     private void initViews() {
         /*Mine code*/
         switchOnOff = findViewById(R.id.switchOnOff);
-        boolean pref2 = PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_SERVICE_ACTIVE), false);
+        boolean pref2 = PreferencesUtils.getPref("serviceActive", false);
         switchOnOff.setChecked(pref2);
         switchOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
