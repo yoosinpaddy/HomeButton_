@@ -22,10 +22,12 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,11 +42,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.home.back.bottom.AppRateDialog.AppRate;
 import com.home.back.bottom.AppRateDialog.RateDialogFragment;
 import com.home.back.bottom.R;
-import com.home.back.bottom.fragment.ButtonSettingsFragment;
-import com.home.back.bottom.fragment.DrawerFragment;
-
 import com.home.back.bottom.dialog.SimpleDialogFragment;
 import com.home.back.bottom.dialog.XHomeBarDialog;
+import com.home.back.bottom.fragment.ButtonSettingsFragment;
+import com.home.back.bottom.fragment.DrawerFragment;
 import com.home.back.bottom.service.ButtonOverlayService;
 import com.home.back.bottom.util.Action;
 import com.home.back.bottom.util.PreferencesUtils;
@@ -97,7 +98,10 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
     private Intent service;
     private androidx.appcompat.widget.Toolbar toolbar;
     private RelativeLayout tutoLayout;
-    ImageView left,center,right;
+    ImageView left, center, right;
+
+    /*Mine code*/
+    private ToggleButton switchOnOff;
 
     private class LoadAppTask extends AsyncTask<String, Void, Void> {
         private LoadAppTask() {
@@ -268,6 +272,15 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
     }
 
     private void initViews() {
+        /*Mine code*/
+        switchOnOff = findViewById(R.id.switchOnOff);
+        switchOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //TODO: Interface here
+            }
+        });
+
         bottomBar = findViewById(R.id.bottom_bar);
         left = findViewById(R.id.left);
         center = findViewById(R.id.center);
@@ -330,7 +343,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
 
             public void onPageSelected(int i) {
 //                bottomBar.selectTabAtPosition(i);
-                switch (i){
+                switch (i) {
                     case 0:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left_select));
                         center.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.center));
@@ -459,7 +472,6 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
     }
 
 
-
     private void startFAQActivity() {
         Intent intent = new Intent(this, WebviewActivity.class);
         Bundle bundle = new Bundle();
@@ -566,6 +578,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
             new LoadAppTask().execute(new String[0]);
         }
     }
+
     private void checkReadPhonePermission_first_stage() {
         if (ContextCompat.checkSelfPermission(this, "android.permission.READ_PHONE_STATE") != 0) {
             showReadPhoneDialog();
@@ -573,8 +586,6 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
             checkDrawPermission();
         }
     }
-
-
 
 
     public void onActivityResult(int i, int i2, Intent intent) {
@@ -670,7 +681,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
     public void loadPurchasedItems() {
         try {
             mHelper.queryInventoryAsync(mGotInventoryListener);
-        } catch ( NullPointerException unused) {
+        } catch (NullPointerException unused) {
             Toast.makeText(this, getString(R.string.billing_loading_error), 0).show();
         }
     }
