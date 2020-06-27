@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,30 +25,29 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/top_layout"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/primary">
+            <!-- <FrameLayout
+                 android:id="@+id/top_layout"
+                 android:layout_width="match_parent"
+                 android:layout_height="100dp"
+                 android:background="@color/primary">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0.15"
-                    android:background="@drawable/ic_launcher_repeat" />
+                 <ImageView
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:alpha="0.15"
+                     android:background="@drawable/ic_launcher_repeat" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/app_logo"
-                    android:visibility="gone" />
-            </FrameLayout>
+                 <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="20dp"
+                     android:src="@drawable/app_logo"
+                     android:visibility="gone" />
+             </FrameLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/top_layout"
                 android:orientation="vertical">
 
                 <FrameLayout
@@ -76,7 +74,6 @@
                     android:id="@+id/suggestion_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/settings_layout"
                     android:visibility="visible">
 
                     <TextView
@@ -84,30 +81,38 @@
                         style="@style/DrawerMainText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:text="@string/drawer_item_suggestions" />
 
-                    <com.joanzapata.iconify.widget.IconTextView
+                    <ImageView
                         style="@style/DrawerIcon"
-                        android:text="{mdi-message-draw}" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/ic_suggestions" />
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/share_layout"
+                    android:id="@+id/faq_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/suggestion_layout">
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/share_textview"
+                        android:id="@+id/faq_textview"
                         style="@style/DrawerMainText"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/drawer_item_share" />
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/drawer_item_faq" />
 
-                    <com.joanzapata.iconify.widget.IconTextView
+                    <ImageView
                         style="@style/DrawerIcon"
-                        android:text="{mdi-share-variant}" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/ic_m_help" />
                 </FrameLayout>
+
 
                 <FrameLayout
                     android:id="@+id/rate_layout"
@@ -120,30 +125,17 @@
                         style="@style/DrawerMainText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:text="@string/drawer_rate" />
 
-                    <com.joanzapata.iconify.widget.IconTextView
+                    <ImageView
                         style="@style/DrawerIcon"
-                        android:text="{mdi-star}" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/faq_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/share_layout">
-
-                    <TextView
-                        android:id="@+id/faq_textview"
-                        style="@style/DrawerMainText"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/drawer_item_faq" />
-
-                    <com.joanzapata.iconify.widget.IconTextView
-                        style="@style/DrawerIcon"
-                        android:text="{mdi-help-circle}" />
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/ic_m_rate" />
                 </FrameLayout>
+
 
                 <FrameLayout
                     android:id="@+id/donate_layout"
@@ -162,6 +154,27 @@
                     <com.joanzapata.iconify.widget.IconTextView
                         style="@style/DrawerIcon"
                         android:text="{mdi-heart}" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/share_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/share_textview"
+                        style="@style/DrawerMainText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/drawer_item_share" />
+
+                    <ImageView
+                        style="@style/DrawerIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/ic_m_share" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -182,7 +195,8 @@
                     android:gravity="left"
                     android:text="@string/privacy_policy"
                     android:textColor="@color/accent_dark"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/version_textview"
@@ -194,7 +208,8 @@
                     android:paddingRight="5dp"
                     android:text="@string/drawer_version"
                     android:textColor="@color/grey_700"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
