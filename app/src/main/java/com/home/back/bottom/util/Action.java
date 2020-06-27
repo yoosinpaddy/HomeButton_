@@ -23,7 +23,7 @@ public enum Action {
 
     private int f53id;
     private int nameResId;
-    private  boolean isChecked;
+    private boolean isChecked = false;
 
     private Action(int i, int i2) {
         this.f53id = i;

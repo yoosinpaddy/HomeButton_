@@ -15,5 +15,11 @@
         <item>@color/purple_500</item>
         <item>@color/white</item>
         <item>@color/grey_700</item>
+        <item>@color/amber_700</item>
+        <item>@color/orange_700</item>
+        <item>@color/pink_700</item>
+        <item>@color/lime_700</item>
+        <item>@color/teal_700</item>
+        <item>@color/indigo_700</item>
     </array>
 </resources>

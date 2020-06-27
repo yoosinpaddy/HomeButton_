@@ -24,8 +24,8 @@ public class MyActionListAdapter extends RecyclerView.Adapter<MyActionListAdapte
     Inter_OnItemClickListener onItemClickListener;
     private List<Action> list = new ArrayList<>();
     private Context context;
-    ArrayList<View> images=new ArrayList<>();
-    int selected=-1;
+    ArrayList<View> images = new ArrayList<>();
+    int selected = -1;
     private static final String TAG = "MyActionListAdapter";
 
 
@@ -45,23 +45,30 @@ public class MyActionListAdapter extends RecyclerView.Adapter<MyActionListAdapte
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Action c = list.get(position);
-        holder.txt_tvbranname.setText(c.name());
+        holder.txt_tvbranname.setText(context.getString(c.getNameResId()));
         holder.imgChecked.setVisibility(View.GONE);
         images.add(holder.imgChecked);
-        Log.e(TAG, "onBindViewHolder: "+c.name() );
+        Log.e(TAG, "onBindViewHolder: " + c.name());
+
+        if (c.isChecked()) {
+            holder.imgChecked.setVisibility(View.VISIBLE);
+            c.setChecked(false);
+        } else {
+            holder.imgChecked.setVisibility(View.GONE);
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selected!=-1){
-                    for (View x:images
-                         ) {
-                        if (x != null){
+               /* if (selected != -1) {
+                    for (View x : images) {
+                        if (x != null) {
                             x.setVisibility(View.GONE);
                         }
                     }
                 }
                 v.setVisibility(View.VISIBLE);
-                selected=position;
+                selected = position;*/
             }
         });
 

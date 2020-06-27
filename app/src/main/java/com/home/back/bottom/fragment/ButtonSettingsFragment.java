@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -31,13 +30,11 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.home.back.bottom.R;
-import com.home.back.bottom.activity.ActionListActivity;
 import com.home.back.bottom.activity.BillingActivity;
-import com.home.back.bottom.activity.MainActivity;
-import com.home.back.bottom.broadcast.reciever.LockScreenAdmin;
-
 import com.home.back.bottom.activity.EnableAccessibilityActivity;
 import com.home.back.bottom.activity.EnableAdminActivity;
+import com.home.back.bottom.activity.MainActivity;
+import com.home.back.bottom.broadcast.reciever.LockScreenAdmin;
 import com.home.back.bottom.dialog.ActionDialogFragment;
 import com.home.back.bottom.dialog.SingleChoiceDialogFragment;
 import com.home.back.bottom.dialog.SliderDialogFragment;
@@ -50,6 +47,7 @@ import com.home.back.bottom.util.PreferencesUtils;
 import com.home.back.bottom.util.Util_Share;
 import com.thebluealliance.spectrum.SpectrumDialog.Builder;
 import com.thebluealliance.spectrum.SpectrumDialog.OnColorSelectedListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -127,18 +125,25 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 
     @Override
     public void buttonClicked(boolean z) {
-        Log.e(TAG, "buttonClicked: Inteface" );
+        Log.e(TAG, "buttonClicked: Inteface");
         activationSwitch.setChecked(z);
 //        onCheckedChanged(activationSwitch,z);
     }
 
     public enum ButtonColor {
+
         RED,
         BLUE,
         GREEN,
         PURPLE,
         WHITE,
-        BLACK;
+        BLACK,
+        AMBER,
+        ORANGE,
+        PINK,
+        LIME,
+        TEAL,
+        INDIGO;
 
         public static ButtonColor fromInt(int i) {
             switch (i) {
@@ -152,8 +157,20 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     return PURPLE;
                 case 4:
                     return WHITE;
-                case 5:
+                case 6:
                     return BLACK;
+                case 7:
+                    return AMBER;
+                case 8:
+                    return ORANGE;
+                case 9:
+                    return PINK;
+                case 10:
+                    return LIME;
+                case 11:
+                    return TEAL;
+                case 12:
+                    return INDIGO;
                 default:
                     return RED;
             }
@@ -214,7 +231,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     break;
             }
         }
-        mainActivity=(MainActivity)getActivity();
+        mainActivity = (MainActivity) getActivity();
         actions = new ArrayList(Arrays.asList(Action.values()));
         if (VERSION.SDK_INT < 21) {
             actions.remove(Action.SCREENSHOT);
@@ -484,6 +501,10 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     }
 
     private void showColorDialog() {
+
+        /*ColorDialogFragment ad = ColorDialogFragment.createInstance();
+        ad.show(getChildFragmentManager(), "tag");*/
+
         new Builder(getContext()).setColors((int) R.array.picker_colors).setDismissOnColorSelected(true).setOutlineWidth(2).setSelectedColorRes(R.color.accent).setOnColorSelectedListener(new OnColorSelectedListener() {
             public void onColorSelected(boolean z, @ColorInt int i) {
                 if (z) {
@@ -494,6 +515,13 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     int color4 = getResources().getColor(R.color.purple_500);
                     int color5 = getResources().getColor(R.color.white);
                     int color6 = getResources().getColor(R.color.grey_700);
+                    int amber = getResources().getColor(R.color.amber_700);
+                    int orange = getResources().getColor(R.color.orange_700);
+                    int pink = getResources().getColor(R.color.pink_700);
+                    int lime = getResources().getColor(R.color.lime_700);
+                    int teal = getResources().getColor(R.color.teal_700);
+                    int indigo = getResources().getColor(R.color.indigo_700);
+
                     if (i == color) {
                         colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_red));
                         PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonColor.RED.ordinal());
@@ -512,6 +540,24 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     } else if (i == color6) {
                         colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_black));
                         PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonColor.BLACK.ordinal());
+                    } else if (i == amber) {
+                        colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_amber));
+                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonColor.AMBER.ordinal());
+                    } else if (i == orange) {
+                        colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_orange));
+                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonColor.ORANGE.ordinal());
+                    } else if (i == pink) {
+                        colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_pink));
+                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonColor.PINK.ordinal());
+                    } else if (i == lime) {
+                        colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_lime));
+                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonColor.LIME.ordinal());
+                    } else if (i == teal) {
+                        colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_teal));
+                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonColor.TEAL.ordinal());
+                    } else if (i == indigo) {
+                        colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_indigo));
+                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonColor.INDIGO.ordinal());
                     }
                     buttonSettingsListener.onRestartServiceNeeded();
                 }
@@ -522,7 +568,6 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private void showVibrationStrengthDialog() {
         startSliderDialog(VIBRATION_STRENGTH_REQUEST, PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_VIBRATION_STRENGTH), 50), getString(R.string.vibration_strength_dialog_title), getString(R.string.vibration_strength_dialog_message));
     }
-
 
 
     public void onClick(View view) {
@@ -601,7 +646,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
             PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_NOTIFICATION_ENABLE), notificationEnableCheckBox.isChecked());
             buttonSettingsListener.onRestartServiceNeeded();
         } else if (compoundButton == activationSwitch) {
-            Log.e(TAG, "onCheckedChanged: "+z );
+            Log.e(TAG, "onCheckedChanged: " + z);
             PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_SERVICE_ACTIVE), activationSwitch.isChecked());
             setupTexts();
             buttonSettingsListener.onRestartServiceNeeded();
@@ -625,39 +670,39 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 
     public void onResume() {
         super.onResume();
-        if (!Util_Share.click_action.equalsIgnoreCase("click_action")){
-            if (!Util_Share.click_action.equalsIgnoreCase("")){
-                if (!Util_Share.position.equalsIgnoreCase("position")){
-                    if (!Util_Share.position.equalsIgnoreCase("")){
+        if (!Util_Share.click_action.equalsIgnoreCase("click_action")) {
+            if (!Util_Share.click_action.equalsIgnoreCase("")) {
+                if (!Util_Share.position.equalsIgnoreCase("position")) {
+                    if (!Util_Share.position.equalsIgnoreCase("")) {
                         if (Util_Share.click_action.equalsIgnoreCase("100")) {
-                                if (Util_Share.choice >= 0 && Util_Share.choice < actions.size()) {
-                                    Action action = (Action) actions.get(Util_Share.choice);
-                                    if (canAccessAction(action)) {
-                                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_CLICK), action.getId());
-                                        onActionSelected(action);
-                                        return;
-                                    }
-                                    startProActivity();
+                            if (Util_Share.choice >= 0 && Util_Share.choice < actions.size()) {
+                                Action action = (Action) actions.get(Util_Share.choice);
+                                if (canAccessAction(action)) {
+                                    PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_CLICK), action.getId());
+                                    onActionSelected(action);
+                                    return;
                                 }
+                                startProActivity();
+                            }
                         } else if (Util_Share.click_action.equalsIgnoreCase("101")) {
-                                if (Util_Share.choice >= 0 && Util_Share.choice < actions.size()) {
-                                    Action action2 = (Action) actions.get(Util_Share.choice);
-                                    if (canAccessAction(action2)) {
-                                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_DOUBLE_CLICK), action2.getId());
-                                        onActionSelected(action2);
-                                        return;
-                                    }
-                                    startProActivity();
+                            if (Util_Share.choice >= 0 && Util_Share.choice < actions.size()) {
+                                Action action2 = (Action) actions.get(Util_Share.choice);
+                                if (canAccessAction(action2)) {
+                                    PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_DOUBLE_CLICK), action2.getId());
+                                    onActionSelected(action2);
+                                    return;
+                                }
+                                startProActivity();
                             }
                         } else if (Util_Share.click_action.equalsIgnoreCase("102")) {
-                                if (Util_Share.choice >= 0 && Util_Share.choice < actions.size()) {
-                                    Action action3 = (Action) actions.get(Util_Share.choice);
-                                    if (canAccessAction(action3)) {
-                                        PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_LONG_CLICK), action3.getId());
-                                        onActionSelected(action3);
-                                        return;
-                                    }
-                                    startProActivity();
+                            if (Util_Share.choice >= 0 && Util_Share.choice < actions.size()) {
+                                Action action3 = (Action) actions.get(Util_Share.choice);
+                                if (canAccessAction(action3)) {
+                                    PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_LONG_CLICK), action3.getId());
+                                    onActionSelected(action3);
+                                    return;
+                                }
+                                startProActivity();
                             }
                         }
                     }
@@ -670,13 +715,13 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 
     public void onActivityResult(int i, int i2, Intent intent) {
         super.onActivityResult(i, i2, intent);
-        Log.e(TAG, "onActivityResult: here11"+i);
+        Log.e(TAG, "onActivityResult: here11" + i);
 
         if (i == 100) {
-            Log.e(TAG, "onActivityResult: here22"+i);
+            Log.e(TAG, "onActivityResult: here22" + i);
 
             if (i2 == 1) {
-                Log.e(TAG, "onActivityResult: here33"+i);
+                Log.e(TAG, "onActivityResult: here33" + i);
                 int intExtra = intent.getIntExtra(SingleChoiceDialogFragment.EXTRA_CHOICE, 0);
                 if (intExtra >= 0 && intExtra < actions.size()) {
                     Action action = (Action) actions.get(intExtra);
@@ -867,7 +912,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private void saveButtonPosition(int i) {
         try {
             PreferencesUtils.savePref(PreferencesUtils.PREF_BUTTON_POSITION, ((ButtonPosition) ButtonPosition.getValues(VERSION.SDK_INT >= 26).get(i)).getId());
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         setupTexts();
