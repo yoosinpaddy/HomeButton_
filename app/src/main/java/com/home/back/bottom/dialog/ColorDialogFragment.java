@@ -19,6 +19,7 @@ import com.home.back.bottom.R;
 import com.home.back.bottom.adapter.MyColorsListAdapter;
 import com.home.back.bottom.adapter.MyPlainColorsListAdapter;
 import com.home.back.bottom.fragment.ButtonSettingsFragment;
+import com.home.back.bottom.interfaces.OnUpdateColor;
 import com.home.back.bottom.util.Inter_OnItemClickListener;
 import com.home.back.bottom.util.PreferencesUtils;
 import com.home.back.bottom.util.RecyclerItemClickListener;
@@ -36,13 +37,15 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
     int selected = -1;
     private static ButtonSettingsFragment.PositionEnum positionEnum;
     private ButtonSettingsFragment.ButtonSettingsListener buttonSettingsListener;
+    private static OnUpdateColor onUpdateColor;
 
-    public static ColorDialogFragment createInstance(ButtonSettingsFragment.PositionEnum mPositionEnum) {
+    public static ColorDialogFragment createInstance(ButtonSettingsFragment.PositionEnum mPositionEnum, OnUpdateColor onUpdateColor1) {
         Bundle bundle = new Bundle();
         ColorDialogFragment simpleDialogFragment = new ColorDialogFragment();
         simpleDialogFragment.setArguments(bundle);
         Log.e(TAG, "createInstance: positionEnum: " + mPositionEnum);
         positionEnum = mPositionEnum;
+        onUpdateColor = onUpdateColor1;
         return simpleDialogFragment;
     }
 
@@ -66,8 +69,7 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
         RecyclerView colorsRecyclerView = convertView.findViewById(R.id.recyclerViewIconsColor);
         RecyclerView plainColorsRecyclerView = convertView.findViewById(R.id.recyclerViewPlainColor);
 
-        IconsModel[] allIcons = new IconsModel[]{
-                new IconsModel(R.drawable.icon_1),
+        /*new IconsModel(R.drawable.icon_1),
                 new IconsModel(R.drawable.icon_2),
                 new IconsModel(R.drawable.icon_3),
                 new IconsModel(R.drawable.icon_4),
@@ -76,7 +78,9 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
                 new IconsModel(R.drawable.icon_7),
                 new IconsModel(R.drawable.icon_8),
                 new IconsModel(R.drawable.icon_9),
-                new IconsModel(R.drawable.icon_10),
+                new IconsModel(R.drawable.icon_10),*/
+
+        IconsModel[] allIcons = new IconsModel[]{
                 new IconsModel(R.drawable.icon_11),
                 new IconsModel(R.drawable.icon_12),
                 new IconsModel(R.drawable.icon_13),
@@ -152,11 +156,12 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
             @Override
             public void onItemClick(View view, int position) {
                 selected = position;
-                Log.e(TAG, "onItemClick 2: " + position);
+                Log.e(TAG, "onItemClick COLOR: " + position);
                 IconsModel selectedPlainColor = plainColorList.get(position);
                 selectedPlainColor.setChecked(true);
                 plainAdapter.notifyDataSetChanged();
                 PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonSettingsFragment.ButtonColor.fromInt(position).ordinal());
+                onUpdateColor.updateColor(selectedPlainColor.getIconResId());
                 buttonSettingsListener.onRestartServiceNeeded();
             }
 

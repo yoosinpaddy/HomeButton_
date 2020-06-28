@@ -39,6 +39,7 @@ import com.home.back.bottom.dialog.ColorDialogFragment;
 import com.home.back.bottom.dialog.SingleChoiceDialogFragment;
 import com.home.back.bottom.dialog.SliderDialogFragment;
 import com.home.back.bottom.interfaces.ActivateButton;
+import com.home.back.bottom.interfaces.OnUpdateColor;
 import com.home.back.bottom.service.AccessibilityActionService;
 import com.home.back.bottom.util.Action;
 import com.home.back.bottom.util.ButtonPosition;
@@ -50,7 +51,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ButtonSettingsFragment extends Fragment implements OnClickListener, SingleChoiceDialogFragment.SingleChoiceListener, OnCheckedChangeListener, ActivateButton {
+public class ButtonSettingsFragment extends Fragment implements OnClickListener, SingleChoiceDialogFragment.SingleChoiceListener, OnCheckedChangeListener, ActivateButton, OnUpdateColor {
     private static final String ARG_POSITION = "ARG_POSITION";
     private static final int BASE_VIBRATION_STRENGTH = 50;
     private static final int BUTTON_HEIGHT_REQUEST = 200;
@@ -101,7 +102,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private CardView notificationCardView;
     private CheckBox notificationEnableCheckBox;
     private RelativeLayout notificationLayout;
-    public static PositionEnum positionEnum = PositionEnum.CENTER;
+    public PositionEnum positionEnum = PositionEnum.CENTER;
     private RelativeLayout proLockedLayout;
     private boolean proVersionUnlock;
     private RelativeLayout rightMarginLayout;
@@ -120,12 +121,59 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private RelativeLayout vibrationStrengthLayout;
     private TextView vibrationStrengthTextView;
     private MainActivity mainActivity;
+    private OnUpdateColor onUpdateColor;
 
     @Override
     public void buttonClicked(boolean z) {
-        Log.e(TAG, "buttonClicked: Inteface");
+        Log.e(TAG, "onCheckedChanged " + positionEnum);
         activationSwitch.setChecked(z);
 //        onCheckedChanged(activationSwitch,z);
+    }
+
+    @Override
+    public void updateColor(int i) {
+        Log.e(TAG, "updateColor: " + i);
+        int color = R.color.red_A700;
+        int color2 = R.color.light_blue_A700;
+        int color3 = R.color.green_A700;
+        int color4 = R.color.purple_500;
+        int color5 = R.color.white;
+        int color6 = R.color.grey_700;
+        int amber = R.color.amber_700;
+        int orange = R.color.orange_700;
+        int pink = R.color.pink_700;
+        int lime = R.color.lime_700;
+        int teal = R.color.teal_700;
+        int indigo = R.color.indigo_700;
+
+
+        if (i == color) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_red));
+        } else if (i == color2) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_blue));
+        } else if (i == color3) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_green));
+        } else if (i == color4) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_purple));
+        } else if (i == color5) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_white));
+        } else if (i == color6) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_black));
+        } else if (i == amber) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_amber));
+        } else if (i == orange) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_orange));
+        } else if (i == pink) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_pink));
+        } else if (i == lime) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_lime));
+        } else if (i == teal) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_teal));
+        } else if (i == indigo) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_indigo));
+        } else {
+            Toast.makeText(mainActivity, "Color not given", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public enum ButtonColor {
@@ -154,19 +202,19 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     return PURPLE;
                 case 4:
                     return WHITE;
-                case 6:
+                case 5:
                     return BLACK;
-                case 7:
+                case 6:
                     return AMBER;
-                case 8:
+                case 7:
                     return ORANGE;
-                case 9:
+                case 8:
                     return PINK;
-                case 10:
+                case 9:
                     return LIME;
-                case 11:
+                case 10:
                     return TEAL;
-                case 12:
+                case 11:
                     return INDIGO;
                 default:
                     return RED;
@@ -214,7 +262,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     }
 
     public static void setPositionEnum(int i) {
-        switch (i) {
+        /*switch (i) {
             case 0:
                 positionEnum = PositionEnum.LEFT;
                 break;
@@ -226,11 +274,13 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                 break;
         }
 
-        Log.e(TAG, "onCreate: ButtonsFragment positionEnum: " + positionEnum);
+        Log.e(TAG, "onCreate: ButtonsFragment positionEnum: " + positionEnum);*/
     }
+
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        onUpdateColor = this;
         if (getArguments() != null) {
             switch (getArguments().getInt(ARG_POSITION, 1)) {
                 case 0:
@@ -534,7 +584,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 
     private void showColorDialog() {
 
-        ColorDialogFragment ad = ColorDialogFragment.createInstance(positionEnum);
+        ColorDialogFragment ad = ColorDialogFragment.createInstance(positionEnum, onUpdateColor);
         ad.show(getFragmentManager(), "dialog_demo_1");
 
         /*new Builder(getContext()).setColors((int) R.array.picker_colors).setDismissOnColorSelected(true).setOutlineWidth(2).setSelectedColorRes(R.color.accent).setOnColorSelectedListener(new OnColorSelectedListener() {

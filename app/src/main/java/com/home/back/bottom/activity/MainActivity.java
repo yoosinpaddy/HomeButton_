@@ -282,16 +282,17 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //TODO: Interface here
-                int i = mViewPager.getCurrentItem();
-                if (i == 0) {
+                int currentFrag = mViewPager.getCurrentItem();
+                Log.e(TAG, "onCheckedChanged: " + currentFrag + isChecked);
+                if (currentFrag == 0) {
                     if (leftFragment != null && leftFragment instanceof ActivateButton) {
                         ((ActivateButton) leftFragment).buttonClicked(isChecked);
                     }
-                } else if (i == 1) {
+                } else if (currentFrag == 1) {
                     if (centerFragment != null && centerFragment instanceof ActivateButton) {
                         ((ActivateButton) centerFragment).buttonClicked(isChecked);
                     }
-                } else {
+                } else if (currentFrag == 2) {
                     if (rightFragment != null && rightFragment instanceof ActivateButton) {
                         ((ActivateButton) rightFragment).buttonClicked(isChecked);
                     }
@@ -361,6 +362,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
 
             public void onPageSelected(int i) {
 //                bottomBar.selectTabAtPosition(i);
+                Log.e(TAG, "onPageSelected: " + i);
                 boolean pref2 = false;
                 switch (i) {
                     case 0:
@@ -370,7 +372,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
                         positionEnum = ButtonSettingsFragment.PositionEnum.LEFT;
                         pref2 = PreferencesUtils.getPref("left_serviceActive", false);
                         switchOnOff.setChecked(pref2);
-                        ButtonSettingsFragment.setPositionEnum(0);
+                        //ButtonSettingsFragment.setPositionEnum(0);
                         break;
                     case 1:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left));
@@ -379,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
                         positionEnum = ButtonSettingsFragment.PositionEnum.CENTER;
                         pref2 = PreferencesUtils.getPref("serviceActive", false);
                         switchOnOff.setChecked(pref2);
-                        ButtonSettingsFragment.setPositionEnum(1);
+                        //ButtonSettingsFragment.setPositionEnum(1);
                         break;
                     case 2:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left));
@@ -388,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
                         positionEnum = ButtonSettingsFragment.PositionEnum.RIGHT;
                         pref2 = PreferencesUtils.getPref("right_serviceActive", false);
                         switchOnOff.setChecked(pref2);
-                        ButtonSettingsFragment.setPositionEnum(2);
+                        //ButtonSettingsFragment.setPositionEnum(2);
 
                         break;
                 }

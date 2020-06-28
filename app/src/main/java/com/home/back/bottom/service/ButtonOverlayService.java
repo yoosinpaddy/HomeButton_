@@ -38,7 +38,6 @@ import com.home.back.bottom.R;
 import com.home.back.bottom.activity.MainActivity;
 import com.home.back.bottom.broadcast.reciever.RestartServiceReceiver;
 import com.home.back.bottom.fragment.ButtonSettingsFragment;
-
 import com.home.back.bottom.helper.ViewHelper;
 import com.home.back.bottom.util.Action;
 import com.home.back.bottom.util.ButtonPosition;
@@ -333,6 +332,24 @@ public class ButtonOverlayService extends Service implements OnClickListener, On
                     break;
                 case 5:
                     ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.button_black));
+                    break;
+                case 6:
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_32));
+                    break;
+                case 7:
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_31));
+                    break;
+                case 8:
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_8));
+                    break;
+                case 9:
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_2));
+                    break;
+                case 10:
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_4));
+                    break;
+                case 11:
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_6));
                     break;
                 default:
                     ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.button_blue));
@@ -680,6 +697,48 @@ public class ButtonOverlayService extends Service implements OnClickListener, On
                         return;
                     }
                     ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.button_black));
+                    return;
+                case 6:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_32), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_32));
+                    return;
+                case 7:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_31), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_31));
+                    return;
+                case 8:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_8), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_8));
+                    return;
+                case 9:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_2), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_2));
+                    return;
+                case 10:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_4), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_4));
+                    return;
+                case 11:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_6), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_6));
                     return;
                 default:
                     ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.button_green));
