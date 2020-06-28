@@ -16,36 +16,51 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class MyColorsListAdapter extends RecyclerView.Adapter<MyColorsListAdapter.MyViewHolder> {
+public class MyPlainColorsListAdapter extends RecyclerView.Adapter<MyPlainColorsListAdapter.MyViewHolder> {
 
     Inter_OnItemClickListener onItemClickListener;
     private List<IconsModel> list;
     private Context context;
-    private static final String TAG = "MyColorsListAdapter";
+    private static final String TAG = "MyPlainColorsListAdapter";
+    int[] colorDrawables;
 
 
-    public MyColorsListAdapter(Context context, List<IconsModel> listx) {
+    public MyPlainColorsListAdapter(Context context, List<IconsModel> listx) {
         this.context = context;
         this.list = listx;
+        colorDrawables = new int[]{
+                R.drawable.disk_red,
+                R.drawable.disk_blue,
+                R.drawable.disk_green,
+                R.drawable.disk_purple,
+                R.drawable.disk_white,
+                R.drawable.disk_black,
+                R.drawable.disk_amber,
+                R.drawable.disk_orange,
+                R.drawable.disk_pink,
+                R.drawable.disk_lime,
+                R.drawable.disk_teal,
+                R.drawable.disk_indigo
+        };
     }
 
     @NotNull
     @Override
     public MyViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_button_color, parent, false);
+        View view = inflater.inflate(R.layout.item_button_color_plain, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        IconsModel icon = list.get(position);
-        holder.imgIcon.setImageResource(icon.getIconResId());
+        IconsModel plainColor = list.get(position);
+        holder.imgIcon.setImageDrawable(context.getResources().getDrawable(colorDrawables[position]));
 
-        if (icon.isChecked()) {
+        if (plainColor.isChecked()) {
             holder.imgChecked.setVisibility(View.VISIBLE);
-            icon.setChecked(false);
-        } else holder.imgChecked.setVisibility(View.INVISIBLE);
+            plainColor.setChecked(false);
+        } else holder.imgChecked.setVisibility(View.GONE);
 
     }
 
@@ -63,8 +78,8 @@ public class MyColorsListAdapter extends RecyclerView.Adapter<MyColorsListAdapte
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            imgIcon = itemView.findViewById(R.id.imgIcon);
-            imgChecked = itemView.findViewById(R.id.imgChecked);
+            imgIcon = itemView.findViewById(R.id.imgColorZ);
+            imgChecked = itemView.findViewById(R.id.imgColorZChecked);
         }
     }
 

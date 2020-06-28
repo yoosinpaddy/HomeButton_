@@ -24,7 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -36,6 +35,7 @@ import com.home.back.bottom.activity.EnableAdminActivity;
 import com.home.back.bottom.activity.MainActivity;
 import com.home.back.bottom.broadcast.reciever.LockScreenAdmin;
 import com.home.back.bottom.dialog.ActionDialogFragment;
+import com.home.back.bottom.dialog.ColorDialogFragment;
 import com.home.back.bottom.dialog.SingleChoiceDialogFragment;
 import com.home.back.bottom.dialog.SliderDialogFragment;
 import com.home.back.bottom.interfaces.ActivateButton;
@@ -45,8 +45,6 @@ import com.home.back.bottom.util.ButtonPosition;
 import com.home.back.bottom.util.PackageUtils;
 import com.home.back.bottom.util.PreferencesUtils;
 import com.home.back.bottom.util.Util_Share;
-import com.thebluealliance.spectrum.SpectrumDialog.Builder;
-import com.thebluealliance.spectrum.SpectrumDialog.OnColorSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -103,7 +101,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private CardView notificationCardView;
     private CheckBox notificationEnableCheckBox;
     private RelativeLayout notificationLayout;
-    private PositionEnum positionEnum = PositionEnum.CENTER;
+    public static PositionEnum positionEnum = PositionEnum.CENTER;
     private RelativeLayout proLockedLayout;
     private boolean proVersionUnlock;
     private RelativeLayout rightMarginLayout;
@@ -131,7 +129,6 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     }
 
     public enum ButtonColor {
-
         RED,
         BLUE,
         GREEN,
@@ -216,6 +213,22 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         return buttonSettingsFragment;
     }
 
+    public static void setPositionEnum(int i) {
+        switch (i) {
+            case 0:
+                positionEnum = PositionEnum.LEFT;
+                break;
+            case 1:
+                positionEnum = PositionEnum.CENTER;
+                break;
+            case 2:
+                positionEnum = PositionEnum.RIGHT;
+                break;
+        }
+
+        Log.e(TAG, "onCreate: ButtonsFragment positionEnum: " + positionEnum);
+    }
+
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         if (getArguments() != null) {
@@ -230,6 +243,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     positionEnum = PositionEnum.RIGHT;
                     break;
             }
+
         }
         mainActivity = (MainActivity) getActivity();
         actions = new ArrayList(Arrays.asList(Action.values()));
@@ -414,6 +428,24 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
             case BLACK:
                 colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_black));
                 break;
+            case AMBER:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_amber));
+                break;
+            case ORANGE:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_orange));
+                break;
+            case PINK:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_pink));
+                break;
+            case LIME:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_lime));
+                break;
+            case TEAL:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_teal));
+                break;
+            case INDIGO:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_indigo));
+                break;
         }
         clickAppTextView.setText(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_CLICK_NAME), ""));
         doubleClickAppTextView.setText(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_DOUBLE_CLICK_NAME), ""));
@@ -502,10 +534,10 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 
     private void showColorDialog() {
 
-        /*ColorDialogFragment ad = ColorDialogFragment.createInstance();
-        ad.show(getChildFragmentManager(), "tag");*/
+        ColorDialogFragment ad = ColorDialogFragment.createInstance(positionEnum);
+        ad.show(getFragmentManager(), "dialog_demo_1");
 
-        new Builder(getContext()).setColors((int) R.array.picker_colors).setDismissOnColorSelected(true).setOutlineWidth(2).setSelectedColorRes(R.color.accent).setOnColorSelectedListener(new OnColorSelectedListener() {
+        /*new Builder(getContext()).setColors((int) R.array.picker_colors).setDismissOnColorSelected(true).setOutlineWidth(2).setSelectedColorRes(R.color.accent).setOnColorSelectedListener(new OnColorSelectedListener() {
             public void onColorSelected(boolean z, @ColorInt int i) {
                 if (z) {
 
@@ -562,7 +594,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     buttonSettingsListener.onRestartServiceNeeded();
                 }
             }
-        }).build().show(getFragmentManager(), "dialog_demo_1");
+        }).build().show(getFragmentManager(), "dialog_demo_1");*/
     }
 
     private void showVibrationStrengthDialog() {
@@ -849,6 +881,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     public String getPrefKey(String str) {
         StringBuilder sb = new StringBuilder();
         sb.append(PositionEnum.getPrefPrefix(positionEnum));
+        Log.e(TAG, "getPrefKey: positionEnum: " + positionEnum);
         sb.append(str);
         return sb.toString();
     }

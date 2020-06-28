@@ -282,18 +282,18 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //TODO: Interface here
-                int i=mViewPager.getCurrentItem();
+                int i = mViewPager.getCurrentItem();
                 if (i == 0) {
-                    if (leftFragment!=null&&leftFragment instanceof ActivateButton){
-                        ((ActivateButton)leftFragment).buttonClicked(isChecked);
+                    if (leftFragment != null && leftFragment instanceof ActivateButton) {
+                        ((ActivateButton) leftFragment).buttonClicked(isChecked);
                     }
                 } else if (i == 1) {
-                    if (centerFragment!=null&&centerFragment instanceof ActivateButton){
-                        ((ActivateButton)centerFragment).buttonClicked(isChecked);
+                    if (centerFragment != null && centerFragment instanceof ActivateButton) {
+                        ((ActivateButton) centerFragment).buttonClicked(isChecked);
                     }
                 } else {
-                    if (rightFragment!=null&&rightFragment instanceof ActivateButton){
-                        ((ActivateButton)rightFragment).buttonClicked(isChecked);
+                    if (rightFragment != null && rightFragment instanceof ActivateButton) {
+                        ((ActivateButton) rightFragment).buttonClicked(isChecked);
                     }
                 }
             }
@@ -361,31 +361,35 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
 
             public void onPageSelected(int i) {
 //                bottomBar.selectTabAtPosition(i);
-                boolean pref2=false;
+                boolean pref2 = false;
                 switch (i) {
                     case 0:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left_select));
                         center.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.center));
                         right.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.right_new));
-                        positionEnum=ButtonSettingsFragment.PositionEnum.LEFT;
+                        positionEnum = ButtonSettingsFragment.PositionEnum.LEFT;
                         pref2 = PreferencesUtils.getPref("left_serviceActive", false);
                         switchOnOff.setChecked(pref2);
+                        ButtonSettingsFragment.setPositionEnum(0);
                         break;
                     case 1:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left));
                         center.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.center_select));
                         right.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.right_new));
-                        positionEnum=ButtonSettingsFragment.PositionEnum.CENTER;
+                        positionEnum = ButtonSettingsFragment.PositionEnum.CENTER;
                         pref2 = PreferencesUtils.getPref("serviceActive", false);
                         switchOnOff.setChecked(pref2);
+                        ButtonSettingsFragment.setPositionEnum(1);
                         break;
                     case 2:
                         left.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.left));
                         center.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.center));
                         right.setImageDrawable(MainActivity.this.getResources().getDrawable(R.drawable.right_select));
-                        positionEnum=ButtonSettingsFragment.PositionEnum.RIGHT;
+                        positionEnum = ButtonSettingsFragment.PositionEnum.RIGHT;
                         pref2 = PreferencesUtils.getPref("right_serviceActive", false);
                         switchOnOff.setChecked(pref2);
+                        ButtonSettingsFragment.setPositionEnum(2);
+
                         break;
                 }
             }

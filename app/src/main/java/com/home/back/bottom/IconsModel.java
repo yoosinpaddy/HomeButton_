@@ -3,19 +3,19 @@ package com.home.back.bottom;
 import java.io.Serializable;
 
 public class IconsModel implements Serializable {
-    int iconRedId;
+    int iconResId;
     boolean isChecked;
 
-    public IconsModel(int iconRedId) {
-        this.iconRedId = iconRedId;
+    public IconsModel(int iconResId) {
+        this.iconResId = iconResId;
     }
 
-    public int getIconRedId() {
-        return iconRedId;
+    public int getIconResId() {
+        return iconResId;
     }
 
-    public void setIconRedId(int iconRedId) {
-        this.iconRedId = iconRedId;
+    public void setIconResId(int iconResId) {
+        this.iconResId = iconResId;
     }
 
     public boolean isChecked() {

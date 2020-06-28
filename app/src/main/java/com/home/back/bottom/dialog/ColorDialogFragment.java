@@ -17,23 +17,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.home.back.bottom.IconsModel;
 import com.home.back.bottom.R;
 import com.home.back.bottom.adapter.MyColorsListAdapter;
+import com.home.back.bottom.adapter.MyPlainColorsListAdapter;
+import com.home.back.bottom.fragment.ButtonSettingsFragment;
 import com.home.back.bottom.util.Inter_OnItemClickListener;
+import com.home.back.bottom.util.PreferencesUtils;
 import com.home.back.bottom.util.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ColorDialogFragment extends DialogFragment implements Inter_OnItemClickListener {
+public class ColorDialogFragment extends DialogFragment implements Inter_OnItemClickListener, ButtonSettingsFragment.ButtonSettingsListener {
 
     private static final String TAG = "ColorDialogFragment";
-    ArrayList<IconsModel> icons = new ArrayList<>();
+    private ArrayList<IconsModel> icons = new ArrayList<>();
+    private ArrayList<IconsModel> plainColorList = new ArrayList<>();
     private MyColorsListAdapter adapter;
+    private MyPlainColorsListAdapter plainAdapter;
     int selected = -1;
+    private static ButtonSettingsFragment.PositionEnum positionEnum;
+    private ButtonSettingsFragment.ButtonSettingsListener buttonSettingsListener;
 
-    public static ColorDialogFragment createInstance() {
+    public static ColorDialogFragment createInstance(ButtonSettingsFragment.PositionEnum mPositionEnum) {
         Bundle bundle = new Bundle();
         ColorDialogFragment simpleDialogFragment = new ColorDialogFragment();
         simpleDialogFragment.setArguments(bundle);
+        Log.e(TAG, "createInstance: positionEnum: " + mPositionEnum);
+        positionEnum = mPositionEnum;
         return simpleDialogFragment;
     }
 
@@ -45,14 +54,17 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
 
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
+        buttonSettingsListener = (ButtonSettingsFragment.ButtonSettingsListener) activity;
     }
 
     @NonNull
     public AlertDialog onCreateDialog(Bundle bundle) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_select_color, null);
+        builder.setView(convertView);
 
+        RecyclerView colorsRecyclerView = convertView.findViewById(R.id.recyclerViewIconsColor);
+        RecyclerView plainColorsRecyclerView = convertView.findViewById(R.id.recyclerViewPlainColor);
 
         IconsModel[] allIcons = new IconsModel[]{
                 new IconsModel(R.drawable.icon_1),
@@ -92,19 +104,20 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
         icons.addAll(Arrays.asList(allIcons));
 
         adapter = new MyColorsListAdapter(getContext(), icons);
-        RecyclerView actionsRecyclerView = convertView.findViewById(R.id.recyclerViewIconsColor);
-        actionsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        actionsRecyclerView.setAdapter(adapter);
 
-        actionsRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
-                actionsRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+        colorsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        colorsRecyclerView.setAdapter(adapter);
+        colorsRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
+                colorsRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 selected = position;
                 Log.e(TAG, "onItemClick: " + position);
-                IconsModel selectedAction = icons.get(position);
-                selectedAction.setChecked(true);
+                IconsModel selectedColor = icons.get(position);
+                selectedColor.setChecked(true);
                 adapter.notifyDataSetChanged();
+                PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), selectedColor.getIconResId());
+                buttonSettingsListener.onRestartServiceNeeded();
             }
 
             @Override
@@ -113,10 +126,46 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
             }
         }));
 
+        IconsModel[] plainColors = new IconsModel[]{
+                new IconsModel(R.color.red_A700),
+                new IconsModel(R.color.light_blue_A700),
+                new IconsModel(R.color.green_A700),
+                new IconsModel(R.color.purple_500),
+                new IconsModel(R.color.white),
+                new IconsModel(R.color.grey_700),
+                new IconsModel(R.color.amber_700),
+                new IconsModel(R.color.orange_700),
+                new IconsModel(R.color.pink_700),
+                new IconsModel(R.color.lime_700),
+                new IconsModel(R.color.teal_700),
+                new IconsModel(R.color.indigo_700)
+        };
 
-        Log.e(TAG, "onCreateDialog: " + icons.size());
+        plainColorList.addAll(Arrays.asList(plainColors));
 
-        builder.setView(convertView);
+        plainAdapter = new MyPlainColorsListAdapter(getContext(), plainColorList);
+        plainColorsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        plainColorsRecyclerView.setAdapter(plainAdapter);
+
+        plainColorsRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
+                plainColorsRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                selected = position;
+                Log.e(TAG, "onItemClick 2: " + position);
+                IconsModel selectedPlainColor = plainColorList.get(position);
+                selectedPlainColor.setChecked(true);
+                plainAdapter.notifyDataSetChanged();
+                PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonSettingsFragment.ButtonColor.fromInt(position).ordinal());
+                buttonSettingsListener.onRestartServiceNeeded();
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
+
         return builder.create();
     }
 
@@ -128,5 +177,22 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
     @Override
     public void onItemClickLister(View v, int position) {
         selected = position;
+    }
+
+    @Override
+    public void onAppSelectionPressed(ButtonSettingsFragment.PositionEnum positionEnum) {
+
+    }
+
+    @Override
+    public void onRestartServiceNeeded() {
+
+    }
+
+    public String getPrefKey(String str) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ButtonSettingsFragment.PositionEnum.getPrefPrefix(positionEnum));
+        sb.append(str);
+        return sb.toString();
     }
 }
