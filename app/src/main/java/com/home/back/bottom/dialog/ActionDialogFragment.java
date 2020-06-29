@@ -2,6 +2,7 @@ package com.home.back.bottom.dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,13 +26,30 @@ import java.util.Arrays;
 
 public class ActionDialogFragment extends DialogFragment implements Inter_OnItemClickListener {
 
-    private static final String TAG = "ActionDialogFragment";
+    public static final String TAG = "ActionDialogFragment";
     ArrayList<Action> actions = new ArrayList<>();
     private MyActionListAdapter adapter;
     int selected = -1;
+    private static final String ARG_CANCEL = "ARG_CANCEL";
+    private static final String ARG_ITEMS = "ARG_ITEMS";
+    private static final String ARG_OK = "ARG_OK";
+    private static final String ARG_TITLE = "ARG_TITLE";
+    public int choice = -1;
+    private String title;
+    private String okButton;
+    private String cancelButton;
+    public SingleChoiceListener singleChoiceListener;
 
-    public static ActionDialogFragment createInstance() {
+    public interface SingleChoiceListener {
+        void onNegativeButtonPressed(ActionDialogFragment singleChoiceDialogFragment);
+
+        void onPositiveButtonPressed(ActionDialogFragment singleChoiceDialogFragment, int i);
+    }
+    public static ActionDialogFragment createInstance(String str, String str2, String str3) {
         Bundle bundle = new Bundle();
+        bundle.putString(ARG_TITLE, str);
+        bundle.putString(ARG_OK, str2);
+        bundle.putString(ARG_CANCEL, str3);
         ActionDialogFragment simpleDialogFragment = new ActionDialogFragment();
         simpleDialogFragment.setArguments(bundle);
         return simpleDialogFragment;
@@ -40,11 +58,19 @@ public class ActionDialogFragment extends DialogFragment implements Inter_OnItem
 
     public void onCreate(@Nullable Bundle bundle) {
         super.onCreate(bundle);
+        if (getArguments() != null) {
+            this.title = getArguments().getString(ARG_TITLE);
+            this.okButton = getArguments().getString(ARG_OK);
+            this.cancelButton = getArguments().getString(ARG_CANCEL);
+        }
 
     }
 
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        if (activity instanceof ActionDialogFragment.SingleChoiceListener) {
+            this.singleChoiceListener = (ActionDialogFragment.SingleChoiceListener) activity;
+        }
 
     }
 
@@ -52,11 +78,35 @@ public class ActionDialogFragment extends DialogFragment implements Inter_OnItem
     public AlertDialog onCreateDialog(Bundle bundle) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_select_action, null);
-        View v = convertView.findViewById(R.id.btnOk);
-        v.setOnClickListener(new View.OnClickListener() {
+        View btnOk = convertView.findViewById(R.id.btnOk);
+        View btnBackAction = convertView.findViewById(R.id.btnBackAction);
+        btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (ActionDialogFragment.this.singleChoiceListener != null) {
+                    ActionDialogFragment.SingleChoiceListener access$000 = ActionDialogFragment.this.singleChoiceListener;
+                    ActionDialogFragment singleChoiceDialogFragment = ActionDialogFragment.this;
+                    access$000.onPositiveButtonPressed(singleChoiceDialogFragment, singleChoiceDialogFragment.choice);
+                }else {
+                    Log.e(TAG, "onClick: listener is null" );
+                }
+                if (ActionDialogFragment.this.getTargetFragment() != null) {
+                    Intent intent = new Intent();
+                    intent.putExtra(SingleChoiceDialogFragment.EXTRA_CHOICE, ActionDialogFragment.this.choice);
+                    ActionDialogFragment.this.getTargetFragment().onActivityResult(ActionDialogFragment.this.getTargetRequestCode(), 1, intent);
+                }else{
+                    Log.e(TAG, "onClick: listener is getTargetFragment" );
+                }
+                dismiss();
+            }
+        });
+        btnBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ActionDialogFragment.this.singleChoiceListener != null) {
+                    ActionDialogFragment.this.singleChoiceListener.onNegativeButtonPressed(ActionDialogFragment.this);
+                }
+                dismiss();
             }
         });
 
@@ -81,6 +131,7 @@ public class ActionDialogFragment extends DialogFragment implements Inter_OnItem
                 Action selectedAction = actions.get(position);
                 selectedAction.setChecked(true);
                 adapter.notifyDataSetChanged();
+                ActionDialogFragment.this.choice = position;
             }
 
             @Override

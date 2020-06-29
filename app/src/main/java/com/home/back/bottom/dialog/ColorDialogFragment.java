@@ -64,6 +64,17 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
     public AlertDialog onCreateDialog(Bundle bundle) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_select_color, null);
+        View okBtn = convertView.findViewById(R.id.okBtn);
+        View btnBackColor = convertView.findViewById(R.id.btnBackColor);
+        View.OnClickListener dismissMe = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+
+        };
+        okBtn.setOnClickListener(dismissMe);
+        btnBackColor.setOnClickListener(dismissMe);
         builder.setView(convertView);
 
         RecyclerView colorsRecyclerView = convertView.findViewById(R.id.recyclerViewIconsColor);
@@ -81,7 +92,6 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
                 new IconsModel(R.drawable.icon_10),*/
 
         IconsModel[] allIcons = new IconsModel[]{
-                new IconsModel(R.drawable.icon_11),
                 new IconsModel(R.drawable.icon_12),
                 new IconsModel(R.drawable.icon_13),
                 new IconsModel(R.drawable.icon_14),
@@ -100,9 +110,7 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
                 new IconsModel(R.drawable.icon_27),
                 new IconsModel(R.drawable.icon_28),
                 new IconsModel(R.drawable.icon_29),
-                new IconsModel(R.drawable.icon_30),
-                new IconsModel(R.drawable.icon_31),
-                new IconsModel(R.drawable.icon_32)
+                new IconsModel(R.drawable.icon_11)
         };
 
         icons.addAll(Arrays.asList(allIcons));
@@ -120,7 +128,8 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
                 IconsModel selectedColor = icons.get(position);
                 selectedColor.setChecked(true);
                 adapter.notifyDataSetChanged();
-                PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), selectedColor.getIconResId());
+                PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonSettingsFragment.ButtonColor.fromInt(position + 12).ordinal());
+                onUpdateColor.updateColor(selectedColor.getIconResId());
                 buttonSettingsListener.onRestartServiceNeeded();
             }
 

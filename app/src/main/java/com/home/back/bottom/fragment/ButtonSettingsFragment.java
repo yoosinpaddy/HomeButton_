@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -26,8 +28,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.home.back.bottom.IconsModel;
 import com.home.back.bottom.R;
 import com.home.back.bottom.activity.BillingActivity;
 import com.home.back.bottom.activity.EnableAccessibilityActivity;
@@ -38,6 +42,7 @@ import com.home.back.bottom.dialog.ActionDialogFragment;
 import com.home.back.bottom.dialog.ColorDialogFragment;
 import com.home.back.bottom.dialog.SingleChoiceDialogFragment;
 import com.home.back.bottom.dialog.SliderDialogFragment;
+import com.home.back.bottom.helper.ViewHelper;
 import com.home.back.bottom.interfaces.ActivateButton;
 import com.home.back.bottom.interfaces.OnUpdateColor;
 import com.home.back.bottom.service.AccessibilityActionService;
@@ -51,7 +56,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ButtonSettingsFragment extends Fragment implements OnClickListener, SingleChoiceDialogFragment.SingleChoiceListener, OnCheckedChangeListener, ActivateButton, OnUpdateColor {
+public class ButtonSettingsFragment extends Fragment implements OnClickListener, ActionDialogFragment.SingleChoiceListener, OnCheckedChangeListener, ActivateButton, OnUpdateColor {
     private static final String ARG_POSITION = "ARG_POSITION";
     private static final int BASE_VIBRATION_STRENGTH = 50;
     private static final int BUTTON_HEIGHT_REQUEST = 200;
@@ -145,6 +150,25 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         int lime = R.color.lime_700;
         int teal = R.color.teal_700;
         int indigo = R.color.indigo_700;
+        int icon_11 = R.drawable.icon_11;
+        int icon_12 = R.drawable.icon_12;
+        int icon_13 = R.drawable.icon_13;
+        int icon_14 = R.drawable.icon_14;
+        int icon_15 = R.drawable.icon_15;
+        int icon_16 = R.drawable.icon_16;
+        int icon_17 = R.drawable.icon_17;
+        int icon_18 = R.drawable.icon_18;
+        int icon_19 = R.drawable.icon_19;
+        int icon_20 = R.drawable.icon_20;
+        int icon_21 = R.drawable.icon_21;
+        int icon_22 = R.drawable.icon_22;
+        int icon_23 = R.drawable.icon_23;
+        int icon_24 = R.drawable.icon_24;
+        int icon_25 = R.drawable.icon_25;
+        int icon_26 = R.drawable.icon_26;
+        int icon_27 = R.drawable.icon_27;
+        int icon_28 = R.drawable.icon_28;
+        int icon_29 = R.drawable.icon_29;
 
 
         if (i == color) {
@@ -171,6 +195,44 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
             colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_teal));
         } else if (i == indigo) {
             colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_indigo));
+        } else if (i == icon_11) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_11));
+        } else if (i == icon_12) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_12));
+        } else if (i == icon_13) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_13));
+        } else if (i == icon_14) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_14));
+        } else if (i == icon_15) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_15));
+        } else if (i == icon_16) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_16));
+        } else if (i == icon_17) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_17));
+        } else if (i == icon_18) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_18));
+        } else if (i == icon_19) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_19));
+        } else if (i == icon_20) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_20));
+        } else if (i == icon_21) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_21));
+        } else if (i == icon_22) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_22));
+        } else if (i == icon_23) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_23));
+        } else if (i == icon_24) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_24));
+        } else if (i == icon_25) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_25));
+        } else if (i == icon_26) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_26));
+        } else if (i == icon_27) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_27));
+        } else if (i == icon_28) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_28));
+        } else if (i == icon_29) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_29));
         } else {
             Toast.makeText(mainActivity, "Color not given", Toast.LENGTH_SHORT).show();
         }
@@ -188,8 +250,34 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         PINK,
         LIME,
         TEAL,
-        INDIGO;
+        INDIGO,
+        icon_12,
+        icon_13,
+        icon_14,
+        icon_15,
+        icon_16,
+        icon_17,
+        icon_18,
+        icon_19,
+        icon_20,
+        icon_21,
+        icon_22,
+        icon_23,
+        icon_24,
+        icon_25,
+        icon_26,
+        icon_27,
+        icon_28,
+        icon_29,
+        icon_11;
 
+                /*case 11:
+                        if (i != 0) {
+            ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_6), (float) i)));
+            return;
+        }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_6));
+                    return;*/
         public static ButtonColor fromInt(int i) {
             switch (i) {
                 case 0:
@@ -216,6 +304,44 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     return TEAL;
                 case 11:
                     return INDIGO;
+                case 12:
+                    return icon_12;
+                case 13:
+                    return icon_13;
+                case 14:
+                    return icon_14;
+                case 15:
+                    return icon_15;
+                case 16:
+                    return icon_16;
+                case 17:
+                    return icon_17;
+                case 18:
+                    return icon_18;
+                case 19:
+                    return icon_19;
+                case 20:
+                    return icon_20;
+                case 21:
+                    return icon_21;
+                case 22:
+                    return icon_22;
+                case 23:
+                    return icon_23;
+                case 24:
+                    return icon_24;
+                case 25:
+                    return icon_25;
+                case 26:
+                    return icon_26;
+                case 27:
+                    return icon_27;
+                case 28:
+                    return icon_28;
+                case 29:
+                    return icon_29;
+                case 30:
+                    return icon_11;
                 default:
                     return RED;
             }
@@ -496,6 +622,63 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
             case INDIGO:
                 colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_indigo));
                 break;
+            case icon_12:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_12));
+                break;
+            case icon_13:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_13));
+                break;
+            case icon_14:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_14));
+                break;
+            case icon_15:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_15));
+                break;
+            case icon_16:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_16));
+                break;
+            case icon_17:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_17));
+                break;
+            case icon_18:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_18));
+                break;
+            case icon_19:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_19));
+                break;
+            case icon_20:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_20));
+                break;
+            case icon_21:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_21));
+                break;
+            case icon_22:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_22));
+                break;
+            case icon_23:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_23));
+                break;
+            case icon_24:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_24));
+                break;
+            case icon_25:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_25));
+                break;
+            case icon_26:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_26));
+                break;
+            case icon_27:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_27));
+                break;
+            case icon_28:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_28));
+                break;
+            case icon_29:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_29));
+                break;
+            case icon_11:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_11));
+                break;
         }
         clickAppTextView.setText(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_CLICK_NAME), ""));
         doubleClickAppTextView.setText(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_DOUBLE_CLICK_NAME), ""));
@@ -563,16 +746,17 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     }
 
     private void startActionDialog(int i) {
-        ArrayList arrayList = new ArrayList();
+        /*ArrayList arrayList = new ArrayList();
         for (Action nameResId : actions) {
             arrayList.add(getString(nameResId.getNameResId()));
         }
-        /*actionsDialogFragment = SingleChoiceDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel), arrayList);
+        actionsDialogFragment = SingleChoiceDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel), arrayList);
         actionsDialogFragment.setTargetFragment(this, i);
         actionsDialogFragment.show(getFragmentManager(), SingleChoiceDialogFragment.TAG);*/
 
-        ActionDialogFragment ad = ActionDialogFragment.createInstance();
-        ad.show(getChildFragmentManager(), "tag");
+        ActionDialogFragment ad = ActionDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel));
+        ad.setTargetFragment(ButtonSettingsFragment.this,i);
+        ad.show(getFragmentManager(), ActionDialogFragment.TAG);
 
     }
 
@@ -735,7 +919,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         }
     }
 
-    public void onPositiveButtonPressed(SingleChoiceDialogFragment singleChoiceDialogFragment, int i) {
+    public void onPositiveButtonPressed(ActionDialogFragment singleChoiceDialogFragment, int i) {
         String str = TAG;
         StringBuilder sb = new StringBuilder();
         sb.append("onPositiveButtonPressed : choice : ");
@@ -745,7 +929,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     }
 
 
-    public void onNegativeButtonPressed(SingleChoiceDialogFragment singleChoiceDialogFragment) {
+    public void onNegativeButtonPressed(ActionDialogFragment singleChoiceDialogFragment) {
         Log.d(TAG, "onNegativeButtonPressed");
         actionsDialogFragment.dismiss();
     }
