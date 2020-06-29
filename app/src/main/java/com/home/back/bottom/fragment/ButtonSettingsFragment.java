@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -23,15 +21,14 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.home.back.bottom.IconsModel;
 import com.home.back.bottom.R;
 import com.home.back.bottom.activity.BillingActivity;
 import com.home.back.bottom.activity.EnableAccessibilityActivity;
@@ -42,7 +39,6 @@ import com.home.back.bottom.dialog.ActionDialogFragment;
 import com.home.back.bottom.dialog.ColorDialogFragment;
 import com.home.back.bottom.dialog.SingleChoiceDialogFragment;
 import com.home.back.bottom.dialog.SliderDialogFragment;
-import com.home.back.bottom.helper.ViewHelper;
 import com.home.back.bottom.interfaces.ActivateButton;
 import com.home.back.bottom.interfaces.OnUpdateColor;
 import com.home.back.bottom.service.AccessibilityActionService;
@@ -68,6 +64,9 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private static final int REQUEST_BUTTON_POSITION = 4641;
     private static final int RIGHT_MARGIN_REQUEST = 203;
     public static final String TAG = "ButtonSettingsFragment";
+    public static int F_ = -1;
+    public static int S_ = -1;
+    public static int T_ = -1;
     private static final int VIBRATION_STRENGTH_REQUEST = 204;
     private List<Action> actions;
     private SingleChoiceDialogFragment actionsDialogFragment;
@@ -127,6 +126,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private TextView vibrationStrengthTextView;
     private MainActivity mainActivity;
     private OnUpdateColor onUpdateColor;
+    private int myCurrentPosition=-1;
 
     @Override
     public void buttonClicked(boolean z) {
@@ -410,12 +410,15 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         if (getArguments() != null) {
             switch (getArguments().getInt(ARG_POSITION, 1)) {
                 case 0:
+                    myCurrentPosition=0;
                     positionEnum = PositionEnum.LEFT;
                     break;
                 case 1:
+                    myCurrentPosition=1;
                     positionEnum = PositionEnum.CENTER;
                     break;
                 case 2:
+                    myCurrentPosition=2;
                     positionEnum = PositionEnum.RIGHT;
                     break;
             }
@@ -457,9 +460,9 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         clickAppLayout = (RelativeLayout) view.findViewById(R.id.select_app_click_layout);
         doubleClickAppLayout = (RelativeLayout) view.findViewById(R.id.select_app_double_click_layout);
         longClickAppLayout = (RelativeLayout) view.findViewById(R.id.select_app_long_click_layout);
-        clickAppLayout.setVisibility(8);
-        doubleClickAppLayout.setVisibility(8);
-        longClickAppLayout.setVisibility(8);
+        clickAppLayout.setVisibility(View.GONE);
+        doubleClickAppLayout.setVisibility(View.GONE);
+        longClickAppLayout.setVisibility(View.GONE);
         buttonInvisibleLayout = (RelativeLayout) view.findViewById(R.id.button_invisible_layout);
         buttonColorLayout = (RelativeLayout) view.findViewById(R.id.color_layout);
         leftMarginLayout = (RelativeLayout) view.findViewById(R.id.button_left_margin_layout);
@@ -525,14 +528,14 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         if (positionEnum == PositionEnum.LEFT || positionEnum == PositionEnum.RIGHT) {
             behaviorCardView = (CardView) view.findViewById(R.id.behavior_cardview);
             notificationCardView = (CardView) view.findViewById(R.id.notification_cardview);
-            behaviorCardView.setVisibility(8);
-            notificationCardView.setVisibility(8);
+            behaviorCardView.setVisibility(View.GONE);
+            notificationCardView.setVisibility(View.GONE);
         }
         if (positionEnum != PositionEnum.LEFT) {
-            leftMarginLayout.setVisibility(8);
+            leftMarginLayout.setVisibility(View.GONE);
         }
         if (positionEnum != PositionEnum.RIGHT) {
-            rightMarginLayout.setVisibility(8);
+            rightMarginLayout.setVisibility(View.GONE);
         }
     }
 
@@ -541,7 +544,13 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         Action fromId2 = Action.fromId(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_DOUBLE_CLICK), Action.NONE.getId()));
         Action fromId3 = Action.fromId(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_LONG_CLICK), Action.NONE.getId()));
         clickSubtitleTextView.setText(fromId.getNameResId());
+        String a=getString(fromId.getNameResId());
+        Log.e(TAG, "setupTexts: choice"+a );
+
         doubleClickSubtitleTextView.setText(fromId2.getNameResId());
+        F_=fromId.getNameResId();
+       S_=fromId2.getNameResId();
+        T_=fromId3.getNameResId();
         longClickSubtitleTextView.setText(fromId3.getNameResId());
         TextView textView = leftMarginSubtitleTextView;
         StringBuilder sb = new StringBuilder();
@@ -564,19 +573,19 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         sb4.append(" %");
         textView4.setText(sb4.toString());
         if (PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_CLICK), 0) == 5) {
-            clickAppLayout.setVisibility(0);
+            clickAppLayout.setVisibility(View.VISIBLE);
         } else {
-            clickAppLayout.setVisibility(8);
+            clickAppLayout.setVisibility(View.GONE);
         }
         if (PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_DOUBLE_CLICK), 0) == 5) {
-            doubleClickAppLayout.setVisibility(0);
+            doubleClickAppLayout.setVisibility(View.VISIBLE);
         } else {
-            doubleClickAppLayout.setVisibility(8);
+            doubleClickAppLayout.setVisibility(View.GONE);
         }
         if (PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_LONG_CLICK), 0) == 5) {
-            longClickAppLayout.setVisibility(0);
+            longClickAppLayout.setVisibility(View.VISIBLE);
         } else {
-            longClickAppLayout.setVisibility(8);
+            longClickAppLayout.setVisibility(View.GONE);
         }
         buttonInvisibleCheckBox.setChecked(!PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_BUTTON_VISIBLE), true));
         vibrationCheckBox.setChecked(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_VIBRATION_ENABLE), true));
@@ -727,7 +736,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                 break;
         }
         if (positionEnum == PositionEnum.CENTER) {
-            proLockedLayout.setVisibility(8);
+            proLockedLayout.setVisibility(View.GONE);
         }
     }
 
@@ -739,13 +748,13 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         sb.append(proVersionUnlock);
         Log.d(str, sb.toString());
         if (proVersionUnlock || positionEnum == PositionEnum.CENTER) {
-            proLockedLayout.setVisibility(8);
+            proLockedLayout.setVisibility(View.GONE);
         } else {
-            proLockedLayout.setVisibility(0);
+            proLockedLayout.setVisibility(View.VISIBLE);
         }
     }
 
-    private void startActionDialog(int i) {
+    private void startActionDialog(int i1, int i) {
         /*ArrayList arrayList = new ArrayList();
         for (Action nameResId : actions) {
             arrayList.add(getString(nameResId.getNameResId()));
@@ -754,8 +763,9 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         actionsDialogFragment.setTargetFragment(this, i);
         actionsDialogFragment.show(getFragmentManager(), SingleChoiceDialogFragment.TAG);*/
 
-        ActionDialogFragment ad = ActionDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel));
-        ad.setTargetFragment(ButtonSettingsFragment.this,i);
+        ActionDialogFragment ad = ActionDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel),i,myCurrentPosition,i1);
+//        ActionDialogFragment ad = ActionDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel));
+        ad.setTargetFragment(ButtonSettingsFragment.this,i1);
         ad.show(getFragmentManager(), ActionDialogFragment.TAG);
 
     }
@@ -843,21 +853,21 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 //            intent.putExtra("position",""+positionEnum);
 //            Log.e(TAG, "onClick: =====///1///"+positionEnum );
 //            startActivity(intent);
-            startActionDialog(100);
+            startActionDialog(100,F_);
         } else if (view == doubleClickLayout) {
 //            Intent intent=new Intent(getActivity(), ActionListActivity.class);
 //            intent.putExtra("clickaction","101");
 //            intent.putExtra("position",""+positionEnum);
 //            Log.e(TAG, "onClick: =====///2///"+positionEnum );
 //            startActivity(intent);
-            startActionDialog(101);
+            startActionDialog(101, S_);
         } else if (view == longClickLayout) {
 //            Intent intent=new Intent(getActivity(), ActionListActivity.class);
 //            intent.putExtra("clickaction","102");
 //            intent.putExtra("position",""+positionEnum);
 //            Log.e(TAG, "onClick: =====///3///"+positionEnum );
 //            startActivity(intent);
-            startActionDialog(102);
+            startActionDialog(102, T_);
         } else if (view == buttonInvisibleLayout) {
             CheckBox checkBox = buttonInvisibleCheckBox;
             checkBox.setChecked(!checkBox.isChecked());
@@ -1112,10 +1122,33 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         Log.d(str, sb.toString());
     }
 
-    public String getPrefKey(String str) {
+   /* public String getPrefKey(String str) {
         StringBuilder sb = new StringBuilder();
         sb.append(PositionEnum.getPrefPrefix(positionEnum));
         Log.e(TAG, "getPrefKey: positionEnum: " + positionEnum);
+        sb.append(str);
+        return sb.toString();
+    }*/
+
+    public String getPrefKey(String str) {
+        PositionEnum pp;
+        switch (myCurrentPosition){
+            case 0:
+                pp= PositionEnum.LEFT;
+                break;
+            case 1:
+                pp = PositionEnum.CENTER;
+                break;
+            case 2:
+                pp = PositionEnum.RIGHT;
+                break;
+            default:
+                pp = PositionEnum.CENTER;
+                break;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(PositionEnum.getPrefPrefix(pp));
+        Log.e(TAG, "getPrefKey: positionEnum: " + pp);
         sb.append(str);
         return sb.toString();
     }

@@ -2,10 +2,15 @@ package com.home.back.bottom.dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
@@ -52,9 +57,22 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
 
     public void onCreate(@Nullable Bundle bundle) {
         super.onCreate(bundle);
+        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
 
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();;
+        Dialog dialog = getDialog();
+        if (dialog != null)
+        {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.MATCH_PARENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+    }
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         buttonSettingsListener = (ButtonSettingsFragment.ButtonSettingsListener) activity;
@@ -128,7 +146,7 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
                 IconsModel selectedColor = icons.get(position);
                 selectedColor.setChecked(true);
                 adapter.notifyDataSetChanged();
-                PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonSettingsFragment.ButtonColor.fromInt(position + 12).ordinal());
+//                PreferencesUtils.savePref(getPrefKey(PreferencesUtils.PREF_BUTTON_COLOR), ButtonSettingsFragment.ButtonColor.fromInt(position + 12).ordinal());
                 onUpdateColor.updateColor(selectedColor.getIconResId());
                 buttonSettingsListener.onRestartServiceNeeded();
             }
@@ -151,7 +169,26 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
                 new IconsModel(R.color.pink_700),
                 new IconsModel(R.color.lime_700),
                 new IconsModel(R.color.teal_700),
-                new IconsModel(R.color.indigo_700)
+                new IconsModel(R.color.indigo_700),
+                new IconsModel(R.drawable.icon_12),
+                new IconsModel(R.drawable.icon_13),
+                new IconsModel(R.drawable.icon_14),
+                new IconsModel(R.drawable.icon_15),
+                new IconsModel(R.drawable.icon_16),
+                new IconsModel(R.drawable.icon_17),
+                new IconsModel(R.drawable.icon_18),
+                new IconsModel(R.drawable.icon_19),
+                new IconsModel(R.drawable.icon_20),
+                new IconsModel(R.drawable.icon_21),
+                new IconsModel(R.drawable.icon_22),
+                new IconsModel(R.drawable.icon_23),
+                new IconsModel(R.drawable.icon_24),
+                new IconsModel(R.drawable.icon_25),
+                new IconsModel(R.drawable.icon_26),
+                new IconsModel(R.drawable.icon_27),
+                new IconsModel(R.drawable.icon_28),
+                new IconsModel(R.drawable.icon_29),
+                new IconsModel(R.drawable.icon_11)
         };
 
         plainColorList.addAll(Arrays.asList(plainColors));
@@ -179,8 +216,14 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
 
             }
         }));
+        convertView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        return builder.create();
+        // creating the fullscreen dialog
+        AlertDialog dialog = builder.create();
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        return dialog;
     }
 
     @Override

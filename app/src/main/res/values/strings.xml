@@ -37,7 +37,7 @@
     <string name="billing_loading_error">Error when loading your purchases.</string>
     <string name="billing_retry">Retry</string>
     <string name="billing_success">Thank you for buying the pro version.\10\10The left and right buttons, the screenshot action, the lock screen action, the quick settings action and the power menu action are unlocked!</string>
-    <string name="button_color">Button color</string>
+    <string name="button_color">Background Button</string>
     <string name="button_invisible">Button invisible</string>
     <string name="button_off">Off</string>
     <string name="button_on">On</string>

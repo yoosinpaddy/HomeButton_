@@ -40,7 +40,26 @@ public class MyPlainColorsListAdapter extends RecyclerView.Adapter<MyPlainColors
                 R.drawable.disk_pink,
                 R.drawable.disk_lime,
                 R.drawable.disk_teal,
-                R.drawable.disk_indigo
+                R.drawable.disk_indigo,
+                R.drawable.icon_12,
+                R.drawable.icon_13,
+                R.drawable.icon_14,
+                R.drawable.icon_15,
+                R.drawable.icon_16,
+                R.drawable.icon_17,
+                R.drawable.icon_18,
+                R.drawable.icon_19,
+                R.drawable.icon_20,
+                R.drawable.icon_21,
+                R.drawable.icon_22,
+                R.drawable.icon_23,
+                R.drawable.icon_24,
+                R.drawable.icon_25,
+                R.drawable.icon_26,
+                R.drawable.icon_27,
+                R.drawable.icon_28,
+                R.drawable.icon_29,
+                R.drawable.icon_11
         };
     }
 

@@ -38,7 +38,7 @@
                 android:layout_marginLeft="24dp"
                 android:layout_toEndOf="@id/btnBackColor"
                 android:layout_toRightOf="@id/btnBackColor"
-                android:text="Color"
+                android:text="Background"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -78,7 +78,7 @@
                 android:id="@+id/tvSelectColorTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select color"
+                android:text="Select Background"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -100,6 +100,7 @@
         android:id="@+id/cvIconColor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         android:layout_margin="16dp"
         android:layout_weight="1"
         app:cardCornerRadius="8dp">

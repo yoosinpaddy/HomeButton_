@@ -270,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
 
     private void initActionBar() {
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Home Button");
         setSupportActionBar(toolbar);
     }
 

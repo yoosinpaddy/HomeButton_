@@ -25,13 +25,18 @@ public class MyActionListAdapter extends RecyclerView.Adapter<MyActionListAdapte
     private List<Action> list = new ArrayList<>();
     private Context context;
     ArrayList<View> images = new ArrayList<>();
-    int selected = -1;
+    String selected = "";
     private static final String TAG = "MyActionListAdapter";
 
 
     public MyActionListAdapter(Context context, List<Action> listx) {
         this.context = context;
         this.list = listx;
+    }
+    public MyActionListAdapter(Context context, List<Action> listx, String selected) {
+        this.context = context;
+        this.list = listx;
+        this.selected = selected;
     }
 
     @NotNull
@@ -54,8 +59,14 @@ public class MyActionListAdapter extends RecyclerView.Adapter<MyActionListAdapte
             holder.imgChecked.setVisibility(View.VISIBLE);
             c.setChecked(false);
         } else {
+            Log.e(TAG, "onBindViewHolder: choice"+selected );
             holder.imgChecked.setVisibility(View.GONE);
+            if (context.getString(c.getNameResId()).toLowerCase().contentEquals(selected.toLowerCase())){
+                holder.imgChecked.setVisibility(View.VISIBLE);
+                Log.e(TAG, "onBindViewHolder: choice try"+context.getString(c.getNameResId()).toLowerCase() );
+            }
         }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

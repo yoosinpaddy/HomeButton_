@@ -39,10 +39,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="?attr/actionBarSize"
-                            android:gravity="center_vertical"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:foregroundGravity="center"
+                            android:layout_toStartOf="@+id/switchOnOff"
+                            android:layout_toLeftOf="@+id/switchOnOff"
+                            android:gravity="center"
                             android:paddingStart="8dp"
                             android:paddingEnd="8dp"
-                            android:text="@string/app_name"
+                            android:text="Home Button"
                             android:textColor="@color/white"
                             android:textSize="21sp"
                             android:textStyle="bold" />
