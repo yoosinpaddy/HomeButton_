@@ -741,12 +741,18 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     }
 
     public void checkProVersion() {
+        Log.e(TAG, "checkProVersion: "+positionEnum );
         proVersionUnlock = PreferencesUtils.getPref(PreferencesUtils.PREF_PRO_VERSION, false) || PreferencesUtils.getPref(PreferencesUtils.PREF_REAL_PRO_VERSION, false);
         String str = TAG;
         StringBuilder sb = new StringBuilder();
         sb.append("checkProVersion unlocked ? => ");
         sb.append(proVersionUnlock);
         Log.d(str, sb.toString());
+        /*if (positionEnum == PositionEnum.CENTER) {
+            proLockedLayout.setVisibility(View.GONE);
+        } else {
+            proLockedLayout.setVisibility(View.VISIBLE);
+        }*/
         if (proVersionUnlock || positionEnum == PositionEnum.CENTER) {
             proLockedLayout.setVisibility(View.GONE);
         } else {
@@ -946,6 +952,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 
     public void onResume() {
         super.onResume();
+        checkProVersion();
         if (!Util_Share.click_action.equalsIgnoreCase("click_action")) {
             if (!Util_Share.click_action.equalsIgnoreCase("")) {
                 if (!Util_Share.position.equalsIgnoreCase("position")) {
@@ -985,7 +992,6 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                 }
             }
         }
-        checkProVersion();
     }
 
 

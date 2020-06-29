@@ -183,7 +183,9 @@ public class BillingActivity extends AppCompatActivity implements OnClickListene
                 sb2.append("Success loading purchase : ");
                 sb2.append(iabResult);
                 Log.d(str2, sb2.toString());
-                proPrice = inventory.getSkuDetails(BillingActivity.SKU_PRO).getPrice();
+                if(inventory!=null||inventory.getSkuDetails(BillingActivity.SKU_PRO).getPrice()!=null){
+                    proPrice = inventory.getSkuDetails(BillingActivity.SKU_PRO).getPrice();
+                }
                 loadPurchasedItems();
             }
         };
@@ -206,7 +208,7 @@ public class BillingActivity extends AppCompatActivity implements OnClickListene
                     sb2.append(iabResult);
                     Log.d(str2, sb2.toString());
                     showSuccess();
-                    PreferencesUtils.savePref(PreferencesUtils.PREF_REAL_PRO_VERSION, true);
+                    PreferencesUtils.savePref(PreferencesUtils.PREF_REAL_PRO_VERSION, false);
                 }
             }
         };

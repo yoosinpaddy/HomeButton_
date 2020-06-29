@@ -741,7 +741,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
                 sb.append("Success loading inventory : ");
                 sb.append(iabResult);
                 Log.d(str, sb.toString());
-                PreferencesUtils.savePref(PreferencesUtils.PREF_REAL_PRO_VERSION, true);
+                PreferencesUtils.savePref(PreferencesUtils.PREF_REAL_PRO_VERSION, false);
             }
         };
     }
