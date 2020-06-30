@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:layout_above="@+id/fl4_adplaceholder"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_one_app"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="20dp"
+        tools:ignore="RtlSymmetry" />
+
+    <FrameLayout
+        android:id="@+id/fl4_adplaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:visibility="visible">
+
+    </FrameLayout>
+</RelativeLayout>
