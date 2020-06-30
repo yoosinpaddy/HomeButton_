@@ -20,6 +20,7 @@ import android.os.Message;
 import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
@@ -667,6 +668,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
         for (int i = 0; i < appLaunchable.size(); i++) {
             strArr[i] = ((ApplicationInfo) appLaunchable.get(i)).loadLabel(getPackageManager()).toString();
         }
+//        View view= LayoutInflater.from(this).inflate()
         new Builder(this).setTitle(getString(R.string.choose_app_button)).setSingleChoiceItems(strArr, -1, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -693,7 +695,7 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
                         return;
                 }
             }
-        }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+        }).setView().setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
