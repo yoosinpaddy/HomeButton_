@@ -63,10 +63,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cvColor"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:layout_weight="1"
-        app:cardCornerRadius="8dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,14 +95,23 @@
 
     </androidx.cardview.widget.CardView>
 
+    <FrameLayout
+        android:id="@+id/fl2_adplaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:visibility="visible">
+
+    </FrameLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvIconColor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="gone"
         android:layout_margin="16dp"
         android:layout_weight="1"
+        android:visibility="gone"
         app:cardCornerRadius="8dp">
 
         <LinearLayout

@@ -83,4 +83,14 @@
         tools:itemCount="18"
         tools:listitem="@layout/item_action" />
 
+    <FrameLayout
+        android:id="@+id/fl3_adplaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:visibility="visible">
+
+    </FrameLayout>
+
 </LinearLayout>
