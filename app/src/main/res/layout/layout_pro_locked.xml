@@ -9,7 +9,7 @@
         android:id="@+id/imgPRO"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="28dp"
+        android:layout_margin="12dp"
         android:src="@drawable/pro_version" />
 
     <TextView
@@ -25,6 +25,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/tvFeatures"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvProTitle"
@@ -34,7 +35,7 @@
         android:gravity="start|left"
         android:text="@string/pro_version_unlocks"
         android:textColor="@color/white"
-        android:textSize="26sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/unlock_pro_button"

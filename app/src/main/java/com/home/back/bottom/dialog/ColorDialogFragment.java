@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,8 @@ import com.home.back.bottom.interfaces.OnUpdateColor;
 import com.home.back.bottom.util.Inter_OnItemClickListener;
 import com.home.back.bottom.util.PreferencesUtils;
 import com.home.back.bottom.util.RecyclerItemClickListener;
+import com.home.back.bottom.util.Util_NativeAdvanceHelper;
+import com.home.back.bottom.util.Util_Share;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,6 +85,11 @@ public class ColorDialogFragment extends DialogFragment implements Inter_OnItemC
     public AlertDialog onCreateDialog(Bundle bundle) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_select_color, null);
+
+        if (Util_Share.isNeedToAdShow(getActivity())) {
+            Util_NativeAdvanceHelper.loadSmallNativeAd(getActivity(), (FrameLayout) convertView.findViewById(R.id.fl2_adplaceholder));
+        }
+
         View okBtn = convertView.findViewById(R.id.okBtn);
         View btnBackColor = convertView.findViewById(R.id.btnBackColor);
         View.OnClickListener dismissMe = new View.OnClickListener() {
