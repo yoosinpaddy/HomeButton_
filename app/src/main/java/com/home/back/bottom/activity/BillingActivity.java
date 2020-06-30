@@ -183,8 +183,12 @@ public class BillingActivity extends AppCompatActivity implements OnClickListene
                 sb2.append("Success loading purchase : ");
                 sb2.append(iabResult);
                 Log.d(str2, sb2.toString());
-                if(inventory!=null||inventory.getSkuDetails(BillingActivity.SKU_PRO).getPrice()!=null){
+                if(inventory!=null&&inventory.getSkuDetails(BillingActivity.SKU_PRO)!=null){
                     proPrice = inventory.getSkuDetails(BillingActivity.SKU_PRO).getPrice();
+                }else{
+                    showError();
+
+                    return;
                 }
                 loadPurchasedItems();
             }

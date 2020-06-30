@@ -194,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
         if (bundle == null) {
             initFragments();
         }
-        checkReadPhonePermission_first_stage();
 //        initRateDialog(bundle);
     }
 

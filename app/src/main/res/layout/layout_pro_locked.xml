@@ -5,37 +5,54 @@
     android:background="@color/primary"
     android:orientation="vertical">
 
-    <ImageView
+
+    <ScrollView
         android:id="@+id/imgPRO"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="12dp"
-        android:src="@drawable/pro_version" />
-
-    <TextView
-        android:id="@+id/tvProTitle"
-        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imgPRO"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="The Pro Version Unlocks:"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_above="@+id/unlock_pro_button">
 
-    <TextView
-        android:id="@+id/tvFeatures"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvProTitle"
-        android:layout_alignStart="@id/tvProTitle"
-        android:layout_alignLeft="@id/tvProTitle"
-        android:layout_marginTop="16dp"
-        android:gravity="start|left"
-        android:text="@string/pro_version_unlocks"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_margin="12dp"
+                android:src="@drawable/pro_version" />
+
+            <TextView
+                android:id="@+id/tvProTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgPRO"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="The Pro Version Unlocks:"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvFeatures"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/unlock_pro_button"
+                android:layout_below="@id/tvProTitle"
+                android:layout_alignStart="@id/tvProTitle"
+                android:layout_alignLeft="@id/tvProTitle"
+                android:layout_marginTop="16dp"
+                android:gravity="start|left"
+                android:text="@string/pro_version_unlocks"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/unlock_pro_button"
