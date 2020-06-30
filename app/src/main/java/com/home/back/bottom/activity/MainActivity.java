@@ -2,6 +2,7 @@ package com.home.back.bottom.activity;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -20,9 +21,12 @@ import android.os.Message;
 import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Adapter;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -37,19 +41,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.home.back.bottom.AppRateDialog.AppRate;
 import com.home.back.bottom.AppRateDialog.RateDialogFragment;
 import com.home.back.bottom.R;
+import com.home.back.bottom.adapter.AppsListAdapter;
 import com.home.back.bottom.dialog.SimpleDialogFragment;
 import com.home.back.bottom.dialog.XHomeBarDialog;
 import com.home.back.bottom.fragment.ButtonSettingsFragment;
 import com.home.back.bottom.fragment.DrawerFragment;
 import com.home.back.bottom.interfaces.ActivateButton;
+import com.home.back.bottom.interfaces.OnAppSelectedLis;
 import com.home.back.bottom.service.ButtonOverlayService;
 import com.home.back.bottom.util.Action;
 import com.home.back.bottom.util.PreferencesUtils;
+import com.home.back.bottom.util.Util_NativeAdvanceHelper;
 import com.home.back.bottom.util.Util_Share;
 import com.home.back.bottom.util.billing.IabHelper;
 import com.home.back.bottom.util.billing.IabResult;
@@ -667,9 +676,28 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
         for (int i = 0; i < appLaunchable.size(); i++) {
             strArr[i] = ((ApplicationInfo) appLaunchable.get(i)).loadLabel(getPackageManager()).toString();
         }
-        new Builder(this).setTitle(getString(R.string.choose_app_button)).setSingleChoiceItems(strArr, -1, new DialogInterface.OnClickListener() {
+        View view= LayoutInflater.from(this).inflate(R.layout.apps_dialog,null);
+
+        if (Util_Share.isNeedToAdShow(this)) {
+            Util_NativeAdvanceHelper.loadSmallNativeAd(this, (FrameLayout) view.findViewById(R.id.fl4_adplaceholder));
+        }
+        final AlertDialog b=new Builder(this).setTitle(getString(R.string.choose_app_button)).create();
+    /*.setSingleChoiceItems(strArr, -1, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
+            }
+        }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        }).show();*/
+        RecyclerView r= view.findViewById(R.id.appsRecyclerView);
+        AppsListAdapter adapter= new AppsListAdapter(this,strArr);
+        adapter.setOnItemClickListener(new OnAppSelectedLis() {
+            @Override
+            public void appSelected(int app) {
+                int i= app;
+                b.dismiss();
                 switch (currentPositionEnum) {
                     case CENTER:
                         if (centerFragment != null) {
@@ -692,12 +720,13 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
                     default:
                         return;
                 }
+
             }
-        }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        }).show();
+        });
+        r.setLayoutManager(new LinearLayoutManager(this));
+        r.setAdapter(adapter);
+        b.setView(view);
+        b.show();
     }
 
     private void setupBillingConnexion() {
