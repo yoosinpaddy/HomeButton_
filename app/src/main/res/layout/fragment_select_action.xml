@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,10 +10,9 @@
         android:id="@+id/toolbarAction"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
         android:background="@color/primary"
-        app:contentInsetStart="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -64,19 +63,20 @@
         android:id="@+id/tvSelectActionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarAction"
         android:layout_margin="16dp"
         android:text="Select an action"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/toolbarAction" />
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewActions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_above="@id/fl3_adplaceholder"
+        android:layout_below="@id/tvSelectActionTitle"
         android:paddingStart="18dp"
-        android:layout_weight="1"
         android:paddingLeft="18dp"
         android:paddingEnd="18dp"
         android:paddingRight="18dp"
@@ -87,10 +87,12 @@
         android:id="@+id/fl3_adplaceholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|center_horizontal"
         android:background="@color/white"
         android:gravity="center"
         android:visibility="visible">
 
     </FrameLayout>
 
-</LinearLayout>
+</RelativeLayout>
