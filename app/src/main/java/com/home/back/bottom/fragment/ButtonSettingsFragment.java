@@ -126,7 +126,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
     private TextView vibrationStrengthTextView;
     private MainActivity mainActivity;
     private OnUpdateColor onUpdateColor;
-    private int myCurrentPosition=-1;
+    private int myCurrentPosition = -1;
 
     @Override
     public void buttonClicked(boolean z) {
@@ -150,7 +150,6 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         int lime = R.color.lime_700;
         int teal = R.color.teal_700;
         int indigo = R.color.indigo_700;
-        int icon_11 = R.drawable.icon_11;
         int icon_12 = R.drawable.icon_12;
         int icon_13 = R.drawable.icon_13;
         int icon_14 = R.drawable.icon_14;
@@ -169,6 +168,41 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         int icon_27 = R.drawable.icon_27;
         int icon_28 = R.drawable.icon_28;
         int icon_29 = R.drawable.icon_29;
+        int icon_30 = R.drawable.icon_11;
+        int icon_31 = R.drawable.icon_31;
+        int icon_32 = R.drawable.icon_32;
+        int icon_33 = R.drawable.icon_33;
+        int icon_34 = R.drawable.icon_34;
+        int icon_35 = R.drawable.icon_35;
+        int icon_36 = R.drawable.icon_36;
+        int icon_37 = R.drawable.icon_37;
+        int icon_38 = R.drawable.icon_38;
+        int icon_39 = R.drawable.icon_39;
+        int icon_40 = R.drawable.icon_40;
+        int icon_41 = R.drawable.icon_41;
+        int icon_42 = R.drawable.icon_42;
+        int icon_43 = R.drawable.icon_43;
+        int icon_44 = R.drawable.icon_44;
+        int icon_45 = R.drawable.icon_45;
+        int icon_46 = R.drawable.icon_46;
+        int icon_47 = R.drawable.icon_47;
+        int icon_48 = R.drawable.icon_48;
+        int icon_49 = R.drawable.icon_49;
+        int icon_50 = R.drawable.icon_50;
+        int icon_51 = R.drawable.icon_51;
+        int icon_52 = R.drawable.icon_52;
+        int icon_53 = R.drawable.icon_53;
+        int icon_54 = R.drawable.icon_54;
+        int icon_55 = R.drawable.icon_55;
+        int icon_56 = R.drawable.icon_56;
+        int icon_57 = R.drawable.icon_57;
+        int icon_58 = R.drawable.icon_58;
+        int icon_59 = R.drawable.icon_59;
+        int icon_60 = R.drawable.icon_60;
+        int icon_61 = R.drawable.icon_61;
+        int icon_62 = R.drawable.icon_62;
+        int icon_63 = R.drawable.icon_63;
+        int icon_64 = R.drawable.icon_64;
 
 
         if (i == color) {
@@ -195,8 +229,6 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
             colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_teal));
         } else if (i == indigo) {
             colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.disk_indigo));
-        } else if (i == icon_11) {
-            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_11));
         } else if (i == icon_12) {
             colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_12));
         } else if (i == icon_13) {
@@ -233,6 +265,76 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
             colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_28));
         } else if (i == icon_29) {
             colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_29));
+        } else if (i == icon_30) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_11));
+        } else if (i == icon_31) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_31));
+        } else if (i == icon_32) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_32));
+        } else if (i == icon_33) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_33));
+        } else if (i == icon_34) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_34));
+        } else if (i == icon_35) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_35));
+        } else if (i == icon_36) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_36));
+        } else if (i == icon_37) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_37));
+        } else if (i == icon_38) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_38));
+        } else if (i == icon_39) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_39));
+        } else if (i == icon_40) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_40));
+        } else if (i == icon_41) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_41));
+        } else if (i == icon_42) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_42));
+        } else if (i == icon_43) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_43));
+        } else if (i == icon_44) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_44));
+        } else if (i == icon_45) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_45));
+        } else if (i == icon_46) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_46));
+        } else if (i == icon_47) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_47));
+        } else if (i == icon_48) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_48));
+        } else if (i == icon_49) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_49));
+        } else if (i == icon_50) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_50));
+        } else if (i == icon_51) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_51));
+        } else if (i == icon_52) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_52));
+        } else if (i == icon_53) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_53));
+        } else if (i == icon_54) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_54));
+        } else if (i == icon_55) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_55));
+        } else if (i == icon_56) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_56));
+        } else if (i == icon_57) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_57));
+        } else if (i == icon_58) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_58));
+        } else if (i == icon_59) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_59));
+        } else if (i == icon_60) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_60));
+        } else if (i == icon_61) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_61));
+        } else if (i == icon_62) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_62));
+        } else if (i == icon_63) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_63));
+        } else if (i == icon_64) {
+            colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_64));
         } else {
             Toast.makeText(mainActivity, "Color not given", Toast.LENGTH_SHORT).show();
         }
@@ -269,15 +371,49 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         icon_27,
         icon_28,
         icon_29,
-        icon_11;
+        icon_11,
+        icon_31,
+        icon_32,
+        icon_33,
+        icon_34,
+        icon_35,
+        icon_36,
+        icon_37,
+        icon_38,
+        icon_39,
+        icon_40,
+        icon_41,
+        icon_42,
+        icon_43,
+        icon_44,
+        icon_45,
+        icon_46,
+        icon_47,
+        icon_48,
+        icon_49,
+        icon_50,
+        icon_51,
+        icon_52,
+        icon_53,
+        icon_54,
+        icon_55,
+        icon_56,
+        icon_57,
+        icon_58,
+        icon_59,
+        icon_60,
+        icon_61,
+        icon_62,
+        icon_63,
+        icon_64;
 
-                /*case 11:
-                        if (i != 0) {
-            ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_6), (float) i)));
-            return;
-        }
-                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_6));
-                    return;*/
+        /*case 11:
+                if (i != 0) {
+    ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_6), (float) i)));
+    return;
+}
+            ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_6));
+            return;*/
         public static ButtonColor fromInt(int i) {
             switch (i) {
                 case 0:
@@ -342,10 +478,79 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
                     return icon_29;
                 case 30:
                     return icon_11;
+                case 31:
+                    return icon_31;
+                case 32:
+                    return icon_32;
+                case 33:
+                    return icon_33;
+                case 34:
+                    return icon_34;
+                case 35:
+                    return icon_35;
+                case 36:
+                    return icon_36;
+                case 37:
+                    return icon_37;
+                case 38:
+                    return icon_38;
+                case 39:
+                    return icon_39;
+                case 40:
+                    return icon_40;
+                case 41:
+                    return icon_41;
+                case 42:
+                    return icon_42;
+                case 43:
+                    return icon_43;
+                case 44:
+                    return icon_44;
+                case 45:
+                    return icon_45;
+                case 46:
+                    return icon_46;
+                case 47:
+                    return icon_47;
+                case 48:
+                    return icon_48;
+                case 49:
+                    return icon_49;
+                case 50:
+                    return icon_50;
+                case 51:
+                    return icon_51;
+                case 52:
+                    return icon_52;
+                case 53:
+                    return icon_53;
+                case 54:
+                    return icon_54;
+                case 55:
+                    return icon_55;
+                case 56:
+                    return icon_56;
+                case 57:
+                    return icon_57;
+                case 58:
+                    return icon_58;
+                case 59:
+                    return icon_59;
+                case 60:
+                    return icon_60;
+                case 61:
+                    return icon_61;
+                case 62:
+                    return icon_62;
+                case 63:
+                    return icon_63;
+                case 64:
+                    return icon_64;
                 default:
                     return RED;
             }
         }
+
     }
 
     public interface ButtonSettingsListener {
@@ -410,15 +615,15 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         if (getArguments() != null) {
             switch (getArguments().getInt(ARG_POSITION, 1)) {
                 case 0:
-                    myCurrentPosition=0;
+                    myCurrentPosition = 0;
                     positionEnum = PositionEnum.LEFT;
                     break;
                 case 1:
-                    myCurrentPosition=1;
+                    myCurrentPosition = 1;
                     positionEnum = PositionEnum.CENTER;
                     break;
                 case 2:
-                    myCurrentPosition=2;
+                    myCurrentPosition = 2;
                     positionEnum = PositionEnum.RIGHT;
                     break;
             }
@@ -544,13 +749,13 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         Action fromId2 = Action.fromId(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_DOUBLE_CLICK), Action.NONE.getId()));
         Action fromId3 = Action.fromId(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_ACTION_ON_LONG_CLICK), Action.NONE.getId()));
         clickSubtitleTextView.setText(fromId.getNameResId());
-        String a=getString(fromId.getNameResId());
-        Log.e(TAG, "setupTexts: choice"+a );
+        String a = getString(fromId.getNameResId());
+        Log.e(TAG, "setupTexts: choice" + a);
 
         doubleClickSubtitleTextView.setText(fromId2.getNameResId());
-        F_=fromId.getNameResId();
-       S_=fromId2.getNameResId();
-        T_=fromId3.getNameResId();
+        F_ = fromId.getNameResId();
+        S_ = fromId2.getNameResId();
+        T_ = fromId3.getNameResId();
         longClickSubtitleTextView.setText(fromId3.getNameResId());
         TextView textView = leftMarginSubtitleTextView;
         StringBuilder sb = new StringBuilder();
@@ -688,60 +893,190 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
             case icon_11:
                 colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_11));
                 break;
-        }
-        clickAppTextView.setText(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_CLICK_NAME), ""));
-        doubleClickAppTextView.setText(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_DOUBLE_CLICK_NAME), ""));
-        longClickAppTextView.setText(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_LONG_CLICK_NAME), ""));
-        try {
-            clickAppImageView.setImageDrawable(getActivity().getPackageManager().getApplicationIcon(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_CLICK_PKG), "")));
-        } catch (NameNotFoundException unused) {
-            Log.w(TAG, "pas de package mais po grave");
-        }
-        try {
-            doubleClickAppImageView.setImageDrawable(getActivity().getPackageManager().getApplicationIcon(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_DOUBLE_CLICK_PKG), "")));
-        } catch (NameNotFoundException unused2) {
-            Log.w(TAG, "pas de package mais po grave");
-        }
-        try {
-            longClickAppImageView.setImageDrawable(getActivity().getPackageManager().getApplicationIcon(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_LONG_CLICK_PKG), "")));
-        } catch (NameNotFoundException unused3) {
-            Log.w(TAG, "pas de package mais po grave");
-        }
-        boolean pref2 = PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_SERVICE_ACTIVE), false);
-        activationSwitch.setChecked(pref2);
-        switch (positionEnum) {
-            case LEFT:
-                TextView textView5 = activationTextView;
-                StringBuilder sb5 = new StringBuilder();
-                sb5.append(getString(R.string.home_left));
-                sb5.append(" ");
-                sb5.append(pref2 ? getString(R.string.button_on) : getString(R.string.button_off));
-                textView5.setText(sb5.toString());
+            case icon_31:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_31));
                 break;
-            case CENTER:
-                TextView textView6 = activationTextView;
-                StringBuilder sb6 = new StringBuilder();
-                sb6.append(getString(R.string.home_center));
-                sb6.append(" ");
-                sb6.append(pref2 ? getString(R.string.button_on) : getString(R.string.button_off));
-                textView6.setText(sb6.toString());
+            case icon_32:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_32));
                 break;
-            case RIGHT:
-                TextView textView7 = activationTextView;
-                StringBuilder sb7 = new StringBuilder();
-                sb7.append(getString(R.string.home_right));
-                sb7.append(" ");
-                sb7.append(pref2 ? getString(R.string.button_on) : getString(R.string.button_off));
-                textView7.setText(sb7.toString());
+            case icon_33:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_33));
                 break;
-        }
-        if (positionEnum == PositionEnum.CENTER) {
-            proLockedLayout.setVisibility(View.GONE);
-        }
+            case icon_34:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_34));
+                break;
+            case icon_35:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_35));
+                break;
+            case icon_36:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_36));
+                break;
+            case icon_37:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_37));
+                break;
+            case icon_38:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_38));
+                break;
+            case icon_39:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_39));
+                break;
+            case icon_40:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_40));
+                break;
+            case icon_41:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_41));
+                break;
+            case icon_42:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_42));
+                break;
+            case icon_43:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_43));
+                break;
+            case icon_44:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_44));
+                break;
+            case icon_45:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_45));
+                break;
+            case icon_46:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_46));
+                break;
+            case icon_47:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_47));
+                break;
+            case icon_48:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_48));
+                break;
+            case icon_49:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_49));
+                break;
+            case icon_50:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_50));
+                break;
+            case icon_51:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_51));
+                break;
+            case icon_52:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_52));
+                break;
+            case icon_53:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_53));
+                break;
+            case icon_54:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_54));
+                break;
+            case icon_55:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_55));
+                break;
+            case icon_56:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_56));
+                break;
+            case icon_57:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_57));
+                break;
+            case icon_58:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_58));
+                break;
+            case icon_59:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_59));
+                break;
+            case icon_60:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_60));
+                break;
+            case icon_61:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_61));
+                break;
+            case icon_62:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_62));
+                break;
+            case icon_63:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_63));
+                break;
+            case icon_64:
+                colorSelectedImageView.setImageDrawable(getResources().getDrawable(R.drawable.icon_64));
+                break;
+
+    }
+        clickAppTextView.setText(PreferencesUtils.getPref(
+
+    getPrefKey(PreferencesUtils.PREF_APP_CLICK_NAME), ""));
+        doubleClickAppTextView.setText(PreferencesUtils.getPref(
+
+    getPrefKey(PreferencesUtils.PREF_APP_DOUBLE_CLICK_NAME), ""));
+        longClickAppTextView.setText(PreferencesUtils.getPref(
+
+    getPrefKey(PreferencesUtils.PREF_APP_LONG_CLICK_NAME), ""));
+        try
+
+    {
+        clickAppImageView.setImageDrawable(getActivity().getPackageManager().getApplicationIcon(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_CLICK_PKG), "")));
+    } catch(
+    NameNotFoundException unused)
+
+    {
+        Log.w(TAG, "pas de package mais po grave");
+    }
+        try
+
+    {
+        doubleClickAppImageView.setImageDrawable(getActivity().getPackageManager().getApplicationIcon(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_DOUBLE_CLICK_PKG), "")));
+    } catch(
+    NameNotFoundException unused2)
+
+    {
+        Log.w(TAG, "pas de package mais po grave");
+    }
+        try
+
+    {
+        longClickAppImageView.setImageDrawable(getActivity().getPackageManager().getApplicationIcon(PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_APP_LONG_CLICK_PKG), "")));
+    } catch(
+    NameNotFoundException unused3)
+
+    {
+        Log.w(TAG, "pas de package mais po grave");
     }
 
+    boolean pref2 = PreferencesUtils.getPref(getPrefKey(PreferencesUtils.PREF_SERVICE_ACTIVE), false);
+        activationSwitch.setChecked(pref2);
+        switch(positionEnum)
+
+    {
+        case LEFT:
+            TextView textView5 = activationTextView;
+            StringBuilder sb5 = new StringBuilder();
+            sb5.append(getString(R.string.home_left));
+            sb5.append(" ");
+            sb5.append(pref2 ? getString(R.string.button_on) : getString(R.string.button_off));
+            textView5.setText(sb5.toString());
+            break;
+        case CENTER:
+            TextView textView6 = activationTextView;
+            StringBuilder sb6 = new StringBuilder();
+            sb6.append(getString(R.string.home_center));
+            sb6.append(" ");
+            sb6.append(pref2 ? getString(R.string.button_on) : getString(R.string.button_off));
+            textView6.setText(sb6.toString());
+            break;
+        case RIGHT:
+            TextView textView7 = activationTextView;
+            StringBuilder sb7 = new StringBuilder();
+            sb7.append(getString(R.string.home_right));
+            sb7.append(" ");
+            sb7.append(pref2 ? getString(R.string.button_on) : getString(R.string.button_off));
+            textView7.setText(sb7.toString());
+            break;
+    }
+        if(positionEnum ==PositionEnum.CENTER)
+
+    {
+        proLockedLayout.setVisibility(View.GONE);
+    }
+
+}
+
     public void checkProVersion() {
-        Log.e(TAG, "checkProVersion: "+positionEnum );
+        Log.e(TAG, "checkProVersion: " + positionEnum);
         proVersionUnlock = PreferencesUtils.getPref(PreferencesUtils.PREF_PRO_VERSION, false) || PreferencesUtils.getPref(PreferencesUtils.PREF_REAL_PRO_VERSION, false);
         String str = TAG;
         StringBuilder sb = new StringBuilder();
@@ -769,9 +1104,9 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
         actionsDialogFragment.setTargetFragment(this, i);
         actionsDialogFragment.show(getFragmentManager(), SingleChoiceDialogFragment.TAG);*/
 
-        ActionDialogFragment ad = ActionDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel),i,myCurrentPosition,i1);
+        ActionDialogFragment ad = ActionDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel), i, myCurrentPosition, i1);
 //        ActionDialogFragment ad = ActionDialogFragment.createInstance(getString(R.string.actions_select), getString(R.string.ok), getString(R.string.cancel));
-        ad.setTargetFragment(ButtonSettingsFragment.this,i1);
+        ad.setTargetFragment(ButtonSettingsFragment.this, i1);
         ad.show(getFragmentManager(), ActionDialogFragment.TAG);
 
     }
@@ -859,7 +1194,7 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 //            intent.putExtra("position",""+positionEnum);
 //            Log.e(TAG, "onClick: =====///1///"+positionEnum );
 //            startActivity(intent);
-            startActionDialog(100,F_);
+            startActionDialog(100, F_);
         } else if (view == doubleClickLayout) {
 //            Intent intent=new Intent(getActivity(), ActionListActivity.class);
 //            intent.putExtra("clickaction","101");
@@ -1138,9 +1473,9 @@ public class ButtonSettingsFragment extends Fragment implements OnClickListener,
 
     public String getPrefKey(String str) {
         PositionEnum pp;
-        switch (myCurrentPosition){
+        switch (myCurrentPosition) {
             case 0:
-                pp= PositionEnum.LEFT;
+                pp = PositionEnum.LEFT;
                 break;
             case 1:
                 pp = PositionEnum.CENTER;

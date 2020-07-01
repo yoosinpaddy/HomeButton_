@@ -375,18 +375,18 @@ public class ButtonOverlayService extends Service implements OnClickListener, On
         }
     }
 
-    private void placeOverlayButton(Button button, boolean z, boolean z2, int overlay_button_color_inner, int i2, int i3, ButtonSettingsFragment.PositionEnum positionEnum) {
+    private void placeOverlayButton(Button button, boolean followRotation, boolean RLCVisible, int overlay_button_color_inner, int RLCWidth, int RLCHeight, ButtonSettingsFragment.PositionEnum positionEnum) {
         boolean z3;
         int i4;
         int i5;
         Button button2 = button;
-        boolean z4 = z2;
+        boolean z4 = RLCVisible;
         int overlayButtonFunction = overlay_button_color_inner;
-        int i7 = i3;
+        int i7 = RLCHeight;
         ButtonSettingsFragment.PositionEnum positionEnum2 = positionEnum;
         if (VERSION.SDK_INT < 23 || Settings.canDrawOverlays(this)) {
             LayoutParams layoutParams = getLayoutParams();
-            if (z) {
+            if (followRotation) {
                 if (getResources().getConfiguration().orientation == 2) {
                     int i8 = screenHeight;
                     double d = (double) (i8 / 2);
@@ -417,7 +417,7 @@ public class ButtonOverlayService extends Service implements OnClickListener, On
                     i5 = (int) (d10 * d12);
                 }
                 layoutParams.height = (int) ScreenUtils.convertDpToPixel((float) i7, this);
-                layoutParams.width = (int) ScreenUtils.convertDpToPixel((float) (i2 * 2), this);
+                layoutParams.width = (int) ScreenUtils.convertDpToPixel((float) (RLCWidth * 2), this);
                 String str = TAG;
                 StringBuilder sb = new StringBuilder();
                 sb.append("params.width : ");
@@ -456,7 +456,7 @@ public class ButtonOverlayService extends Service implements OnClickListener, On
                 int i12 = (int) (d16 * d18);
                 if (getResources().getConfiguration().orientation == 2) {
                     boolean z5 = ScreenUtils.getScreenOrientation(this) == 8;
-                    layoutParams.height = (int) ScreenUtils.convertDpToPixel((float) (i2 * 2), this);
+                    layoutParams.height = (int) ScreenUtils.convertDpToPixel((float) (RLCWidth * 2), this);
                     layoutParams.width = (int) ScreenUtils.convertDpToPixel((float) i7, this);
                     if ((positionEnum2 == ButtonSettingsFragment.PositionEnum.RIGHT && !z5) || (positionEnum2 == ButtonSettingsFragment.PositionEnum.LEFT && z5)) {
                         layoutParams.y = i11 - layoutParams.height;
@@ -478,7 +478,7 @@ public class ButtonOverlayService extends Service implements OnClickListener, On
                 } else if (getResources().getConfiguration().orientation == 1) {
                     boolean z6 = ScreenUtils.getScreenOrientation(this) == 9;
                     layoutParams.height = (int) ScreenUtils.convertDpToPixel((float) i7, this);
-                    layoutParams.width = (int) ScreenUtils.convertDpToPixel((float) (i2 * 2), this);
+                    layoutParams.width = (int) ScreenUtils.convertDpToPixel((float) (RLCWidth * 2), this);
                     if ((positionEnum2 != ButtonSettingsFragment.PositionEnum.LEFT || z6) && (positionEnum2 != ButtonSettingsFragment.PositionEnum.RIGHT || !z6)) {
                         z3 = false;
                         if (positionEnum2 == ButtonSettingsFragment.PositionEnum.CENTER) {
@@ -508,11 +508,11 @@ public class ButtonOverlayService extends Service implements OnClickListener, On
             try {
                 windowManager.addView(button2, layoutParams);
             } catch (Exception unused) {
-                Toast.makeText(this, R.string.error_draw_permission, 0).show();
+                Toast.makeText(this, R.string.error_draw_permission, Toast.LENGTH_SHORT).show();
             }
             return;
         }
-        Toast.makeText(this, getString(R.string.no_permission_dialog_message_toast), 1).show();
+        Toast.makeText(this, getString(R.string.no_permission_dialog_message_toast), Toast.LENGTH_LONG).show();
     }
 
     private LayoutParams getLayoutParams() {
@@ -874,6 +874,277 @@ public class ButtonOverlayService extends Service implements OnClickListener, On
                         return;
                     }
                     ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_11));
+                    return;
+                case 31:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_31), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_31));
+                    return;
+
+                case 32:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_32), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_32));
+                    return;
+
+                case 33:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_33), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_33));
+                    return;
+
+                case 34:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_34), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_34));
+                    return;
+
+                case 35:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_35), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_35));
+                    return;
+
+                case 36:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_36), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_36));
+                    return;
+
+                case 37:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_37), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_37));
+                    return;
+
+                case 38:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_38), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_38));
+                    return;
+
+                case 39:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_39), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_39));
+                    return;
+
+                case 40:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_40), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_40));
+                    return;
+
+                case 41:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_41), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_41));
+                    return;
+
+                case 42:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_42), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_42));
+                    return;
+
+                case 43:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_43), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_43));
+                    return;
+
+                case 44:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_44), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_44));
+                    return;
+
+                case 45:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_45), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_45));
+                    return;
+
+                case 46:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_46), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_46));
+                    return;
+
+                case 47:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_47), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_47));
+                    return;
+
+                case 48:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_48), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_48));
+                    return;
+
+                case 49:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_49), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_49));
+                    return;
+
+                case 50:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_50), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_50));
+                    return;
+
+                case 51:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_51), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_51));
+                    return;
+
+                case 52:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_52), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_52));
+                    return;
+
+                case 53:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_53), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_53));
+                    return;
+
+                case 54:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_54), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_54));
+                    return;
+
+                case 55:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_55), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_55));
+                    return;
+
+                case 56:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_56), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_56));
+                    return;
+
+                case 57:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_57), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_57));
+                    return;
+
+                case 58:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_58), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_58));
+                    return;
+
+                case 59:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_59), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_59));
+                    return;
+
+                case 60:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_60), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_60));
+                    return;
+
+                case 61:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_61), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_61));
+                    return;
+
+                case 62:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_62), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_62));
+                    return;
+
+                case 63:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_63), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_63));
+                    return;
+
+                case 64:
+                    if (i != 0) {
+                        ViewHelper.setBackground(button, new BitmapDrawable(getResources(), ViewHelper.rotateBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon_64), (float) i)));
+                        return;
+                    }
+                    ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.icon_64));
                     return;
                 default:
                     ViewHelper.setBackground(button, ContextCompat.getDrawable(this, R.drawable.button_green));
