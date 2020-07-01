@@ -80,6 +80,10 @@ public class MyPlainColorsListAdapter extends RecyclerView.Adapter<MyPlainColors
             holder.imgChecked.setVisibility(View.VISIBLE);
             plainColor.setChecked(false);
         } else holder.imgChecked.setVisibility(View.GONE);
+        if (plainColor.isPremium()) {
+            holder.imgPremium.setVisibility(View.VISIBLE);
+            plainColor.setChecked(false);
+        } else holder.imgPremium.setVisibility(View.GONE);
 
     }
 
@@ -93,11 +97,12 @@ public class MyPlainColorsListAdapter extends RecyclerView.Adapter<MyPlainColors
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgIcon, imgChecked;
+        ImageView imgIcon, imgChecked,imgPremium;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             imgIcon = itemView.findViewById(R.id.imgColorZ);
+            imgPremium = itemView.findViewById(R.id.imgPremium);
             imgChecked = itemView.findViewById(R.id.imgColorZChecked);
         }
     }

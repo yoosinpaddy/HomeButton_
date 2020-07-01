@@ -49,11 +49,13 @@ import com.home.back.bottom.AppRateDialog.AppRate;
 import com.home.back.bottom.AppRateDialog.RateDialogFragment;
 import com.home.back.bottom.R;
 import com.home.back.bottom.adapter.AppsListAdapter;
+import com.home.back.bottom.dialog.ColorDialogFragment;
 import com.home.back.bottom.dialog.SimpleDialogFragment;
 import com.home.back.bottom.dialog.XHomeBarDialog;
 import com.home.back.bottom.fragment.ButtonSettingsFragment;
 import com.home.back.bottom.fragment.DrawerFragment;
 import com.home.back.bottom.interfaces.ActivateButton;
+import com.home.back.bottom.interfaces.ActivateOnBackPressed;
 import com.home.back.bottom.interfaces.OnAppSelectedLis;
 import com.home.back.bottom.service.ButtonOverlayService;
 import com.home.back.bottom.util.Action;
@@ -70,7 +72,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ButtonSettingsFragment.ButtonSettingsListener, OnClickListener, SimpleDialogFragment.SimpleFragmentListener, DrawerFragment.DrawerActionsListener {
+public class MainActivity extends AppCompatActivity implements ColorDialogFragment.BackPressedListener, ButtonSettingsFragment.ButtonSettingsListener, OnClickListener, SimpleDialogFragment.SimpleFragmentListener, DrawerFragment.DrawerActionsListener {
     private static final int DAY_IN_MILLISEC = 86400000;
     private static final int REQUEST_CODE_ADMIN = 112;
     private static final int REQUEST_CODE_PERMISION_SYSTEM_ALERT_WINDOW = 6969;
@@ -90,7 +92,11 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private boolean isServiceRunning = false;
+    private boolean isBackPressedActivate = false;
+    public BackPressedSender backPressedSender;
+    public ActivateOnBackPressed activateOnBackPressed1;
 
+    public ColorDialogFragment colorDialogFragment;
     public ButtonSettingsFragment leftFragment;
     private IabHelper.QueryInventoryFinishedListener mGotInventoryListener;
     private IabHelper mHelper;
@@ -113,6 +119,22 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
 
     /*Mine code*/
     private ToggleButton switchOnOff;
+
+    @Override
+    public void activateBackPressed(Boolean sendEvents) {
+        Log.e(TAG, "activateBackPressed: override call"+sendEvents );
+        isBackPressedActivate = sendEvents;
+    }
+
+    @Override
+    public void callEventRegister(ActivateOnBackPressed activateOnBackPressed) {
+        Log.e(TAG, "callEventRegister: override call" );
+        activateOnBackPressed1 = activateOnBackPressed;
+    }
+
+    public interface BackPressedSender {
+        void callEventNow();
+    }
 
     private class LoadAppTask extends AsyncTask<String, Void, Void> {
         private LoadAppTask() {
@@ -218,11 +240,26 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
         super.onSaveInstanceState(bundle, persistableBundle);
     }
 
+    @Override
     public void onBackPressed() {
+        Log.e(TAG, "onBackPressed: start" );
         if (drawerLayout.isDrawerOpen(3)) {
             drawerLayout.closeDrawers();
         } else {
-            super.onBackPressed();
+//            if (isBackPressedActivate){
+//                isBackPressedActivate=false;
+//                Log.e(TAG, "onBackPressed: isBackPressedActivate" );
+//                if (activateOnBackPressed1!=null){
+//                    Log.e(TAG, "onBackPressed: activateOnBackPressed1 not null" );
+//                    activateOnBackPressed1.OnCallEvent();
+//                }else {
+//                    Log.e(TAG, "onBackPressed: activateOnBackPressed1 is null" );
+//                }
+//            }else {
+                Log.e(TAG, "onBackPressed: is not active" );
+                super.onBackPressed();
+
+//            }
         }
     }
 
@@ -675,12 +712,12 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
         for (int i = 0; i < appLaunchable.size(); i++) {
             strArr[i] = ((ApplicationInfo) appLaunchable.get(i)).loadLabel(getPackageManager()).toString();
         }
-        View view= LayoutInflater.from(this).inflate(R.layout.apps_dialog,null);
+        View view = LayoutInflater.from(this).inflate(R.layout.apps_dialog, null);
 
         if (Util_Share.isNeedToAdShow(this)) {
             Util_NativeAdvanceHelper.loadSmallNativeAd(this, (FrameLayout) view.findViewById(R.id.fl4_adplaceholder));
         }
-        final AlertDialog b=new Builder(this).setTitle(getString(R.string.choose_app_button)).create();
+        final AlertDialog b = new Builder(this).setTitle(getString(R.string.choose_app_button)).create();
     /*.setSingleChoiceItems(strArr, -1, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -690,12 +727,12 @@ public class MainActivity extends AppCompatActivity implements ButtonSettingsFra
                 dialogInterface.dismiss();
             }
         }).show();*/
-        RecyclerView r= view.findViewById(R.id.appsRecyclerView);
-        AppsListAdapter adapter= new AppsListAdapter(this,strArr);
+        RecyclerView r = view.findViewById(R.id.appsRecyclerView);
+        AppsListAdapter adapter = new AppsListAdapter(this, strArr);
         adapter.setOnItemClickListener(new OnAppSelectedLis() {
             @Override
             public void appSelected(int app) {
-                int i= app;
+                int i = app;
                 b.dismiss();
                 switch (currentPositionEnum) {
                     case CENTER:

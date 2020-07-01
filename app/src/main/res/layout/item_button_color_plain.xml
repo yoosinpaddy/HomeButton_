@@ -11,7 +11,19 @@
         android:layout_height="30dp"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
-        tools:src="@drawable/disk_blue" />
+        tools:src="@drawable/icon_11" />
+
+    <ImageView
+        android:id="@+id/imgPremium"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignTop="@+id/imgColorZ"
+        android:layout_alignEnd="@+id/imgColorZ"
+        android:layout_alignRight="@+id/imgColorZ"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="-10dp"
+        android:visibility="gone"
+        android:src="@drawable/crown" />
 
     <ImageView
         android:id="@+id/imgColorZChecked"
